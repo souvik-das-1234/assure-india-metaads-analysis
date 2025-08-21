@@ -66,12 +66,12 @@
         .tab-content.active {
             display: block;
         }
-        .deep-dive-container {
-            height: 500px; /* Increased height */
+        .scrollable-section {
+            height: 300px;
             overflow-y: auto;
             border: 1px solid #e2e8f0;
             border-radius: 0.5rem;
-            padding: 1.5rem;
+            padding: 1rem;
         }
     </style>
 </head>
@@ -257,77 +257,44 @@
                         <canvas id="ttkChart"></canvas>
                     </div>
                 </div>
-                <div class="mt-8 deep-dive-container">
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Strengths</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Unmatched SEO and organic reach.</li>
-                                    <li>High brand trust and legacy.</li>
-                                    <li>Excellent website user engagement.</li>
-                                </ul>
+                <div class="mt-8">
+                    <h3 class="metric-title mb-3">Marketing & Campaign Deep Dive</h3>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="scrollable-section">
+                                <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
+                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/532602186_1192548086248482_2651224585249923489_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fGGkopUWuskQ7kNvwHCrOuT&_nc_oc=AdnsLDHT2OInodFdaecAhavnTMSVJ1YqPSuOy-nHN2zyxLw1Ci0s5vriKR6mUaF0qA-uMaEy7xRc-c-g-71s2B_p&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fixL3F8dUGRnpIuzxD-1TQ&oh=00_AfUMe0Qy_Iaw1amLKttGmB9DGfWBLSeyaESAgT-1BFUV8g&oe=68AD1698" class="rounded w-full h-auto">
+                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/517426868_1163417565828201_5543129247848137541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HWXbSwh3GcoQ7kNvwFfIZey&_nc_oc=AdnXs4Brb5E1z5yqCS77NrlH8lLTXrXeK0u1j_tQPdtW8yQfkKTYRTJ8hoNcj7uKXAI9ABngnRKEY1ehxHxddJ9z&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fTfEFKAz_CQzZXzTHzQQ2w&oh=00_AfUdT9hoxeiOuI0I3r6hdiag6BgMLOdwssV0pIxXGao6OA&oe=68ACE39D" class="rounded w-full h-auto mt-4">
                             </div>
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>No investment in paid search.</li>
-                                    <li>Potentially slower to innovate in new niches.</li>
-                                    <li>Premium pricing may alienate some segments.</li>
-                                </ul>
+                            <div class="scrollable-section">
+                                <h4 class="font-bold text-lg mb-2">Event Banners</h4>
+                                <img src="https://placehold.co/600x400/dcfce7/166534?text=Exhibition+Gate" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/600x400/dcfce7/166534?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
                             </div>
-                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
-                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
-                                    <li>Use PPC to appear above their organic listings.</li>
-                                    <li>Target emerging product niches they are slow to adopt.</li>
-                                    <li>Offer competitive pricing with a focus on value.</li>
-                                </ul>
+                             <div class="scrollable-section">
+                                <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
+                                <iframe class="w-full h-64 rounded-lg" src="https://www.facebook.com/reel/1087254463394207/?s=fb_shorts_profile&stack_idx=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="metric-title mb-3">Marketing & Campaign Highlights</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Occasion Post </h4>
-                                    <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/517426868_1163417565828201_5543129247848137541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HWXbSwh3GcoQ7kNvwFfIZey&_nc_oc=AdnXs4Brb5E1z5yqCS77NrlH8lLTXrXeK0u1j_tQPdtW8yQfkKTYRTJ8hoNcj7uKXAI9ABngnRKEY1ehxHxddJ9z&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fTfEFKAz_CQzZXzTHzQQ2w&oh=00_AfUdT9hoxeiOuI0I3r6hdiag6BgMLOdwssV0pIxXGao6OA&oe=68ACE39D" class="rounded w-full h-auto">
-                                    <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/484943494_1071857728317519_2065051100669623949_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tg2vRn1RvE4Q7kNvwHMLmPg&_nc_oc=AdloOVDe-YoML71mkB9cxLHUzN3wZJMCAT89ooSzZmn4kkJHSDdkyXThA8VpvS1VtRWtHSS7DPDf_B5QQ3ezEwYQ&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=A4BAop0XkG68NhUZm7yq4Q&oh=00_AfWNnE12_oZW4XR9cXDAITUhL5iiorsBpYJm1uGdgWTsEw&oe=68ACEB79" class="rounded w-full h-auto">
-                                    <img src="https://placehold.co/400x300/dcfce7/166534?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                    <img src="https://placehold.co/400x300/dcfce7/166534?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                    <img src="https://placehold.co/400x300/dcfce7/166534?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                    <img src="https://placehold.co/400x300/dcfce7/166534?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-
-                    
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Event Banner</h4>
-                                    <img src="https://placehold.co/400x300/dcfce7/166534?text=Exhibition+Gate" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <a href="#" class="block relative">
-                                        <img src="https://www.facebook.com/reel/1891530894585010" class="rounded w-full h-auto">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">
-                                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
-                                        </div>
-                                    </a>
+                        <div class="space-y-6">
+                            <div class="scrollable-section">
+                                <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
+                                <div class="grid grid-cols-2 gap-2">
+                                    <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/527331623_1183057147197576_6429163481495247956_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ESSdQ7HX_FYQ7kNvwGXwHSJ&_nc_oc=AdkacBjKiWU1T2_JHoPfn_jxayu4siHClEy_VV4j7Gt-gX3nn_dytiWvESAT3u38HB_m4MnvU9G_AVCHFRwjofbz&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=YQz-WGDmpOax2GaTIcudtw&oh=00_AfXel7AuhQiZnLn2w6jlbFxIZMvu3sjEkep17JxkNc2XxQ&oe=68ACFDC3" class="rounded w-full h-auto">
+                                    <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/525711005_1180649504105007_831985997918180708_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hXI6zzXbbXIQ7kNvwFe6CBf&_nc_oc=Adn6nyV9w7UrTRIZ-tiQksQn4xyPIf5-fe2ORrtwBfGqYD4PConaEQPK1PhPZHMPBivaL8QaUKDRLHKAiU5KksL8&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=333LwxWxbzIFaxRtaWigsQ&oh=00_AfWZR9paAshi6MgUXyOGrqIFgoiu4bXPJggoxcCqIowplA&oe=68ACF00C" class="rounded w-full h-auto">
+                                    <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/527337118_1183057093864248_4512227386178833086_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3Krodqd8uw8Q7kNvwHENcDY&_nc_oc=Adlax562gjYI1Vn7YFJbZMlroNO6jbBi-eQV5JOgjU7-DavmGk5_N3AQqb7eO2oQxkan2SDOcR5_zeTInRJUBjCC&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=BgfICc2qVGAPC6AE7g49_Q&oh=00_AfXtQ0puRTp1NxTv10LUX7ztX6qoShI_4wmuklZWuQIdpQ&oe=68AD03BC" class="rounded w-full h-auto">
                                 </div>
                             </div>
-                        </div>
-                        <div class="metric-card">
-                            <h4 class="font-bold text-lg mb-2">Facebook Posts</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/527331623_1183057147197576_6429163481495247956_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ESSdQ7HX_FYQ7kNvwGXwHSJ&_nc_oc=AdkacBjKiWU1T2_JHoPfn_jxayu4siHClEy_VV4j7Gt-gX3nn_dytiWvESAT3u38HB_m4MnvU9G_AVCHFRwjofbz&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=YQz-WGDmpOax2GaTIcudtw&oh=00_AfXel7AuhQiZnLn2w6jlbFxIZMvu3sjEkep17JxkNc2XxQ&oe=68ACFDC3" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/525711005_1180649504105007_831985997918180708_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hXI6zzXbbXIQ7kNvwFe6CBf&_nc_oc=Adn6nyV9w7UrTRIZ-tiQksQn4xyPIf5-fe2ORrtwBfGqYD4PConaEQPK1PhPZHMPBivaL8QaUKDRLHKAiU5KksL8&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=333LwxWxbzIFaxRtaWigsQ&oh=00_AfWZR9paAshi6MgUXyOGrqIFgoiu4bXPJggoxcCqIowplA&oe=68ACF00C" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/527337118_1183057093864248_4512227386178833086_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=3Krodqd8uw8Q7kNvwHENcDY&_nc_oc=Adlax562gjYI1Vn7YFJbZMlroNO6jbBi-eQV5JOgjU7-DavmGk5_N3AQqb7eO2oQxkan2SDOcR5_zeTInRJUBjCC&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=BgfICc2qVGAPC6AE7g49_Q&oh=00_AfXtQ0puRTp1NxTv10LUX7ztX6qoShI_4wmuklZWuQIdpQ&oe=68AD03BC" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                        <div class="metric-card">
-                            <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                            <div class="scrollable-section">
+                                <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                    <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                    <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                    <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                    <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                    <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -394,12 +361,7 @@
                                 </div>
                                 <div class="metric-card">
                                     <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <a href="#" class="block relative">
-                                        <img src="https://placehold.co/400x300/ffedd5/c2410c?text=New+Product+Reel" class="rounded w-full h-auto">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">
-                                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
-                                        </div>
-                                    </a>
+                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -483,12 +445,7 @@
                                 </div>
                                 <div class="metric-card">
                                     <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <a href="#" class="block relative">
-                                        <img src="https://placehold.co/400x300/fce7f3/db2777?text=Sanjeev+Kapoor+Reel" class="rounded w-full h-auto">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">
-                                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
-                                        </div>
-                                    </a>
+                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -572,12 +529,7 @@
                                 </div>
                                 <div class="metric-card">
                                     <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <a href="#" class="block relative">
-                                        <img src="https://placehold.co/400x300/f3e8ff/7e22ce?text=Unboxing+Reel" class="rounded w-full h-auto">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">
-                                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
-                                        </div>
-                                    </a>
+                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -661,12 +613,7 @@
                                 </div>
                                 <div class="metric-card">
                                     <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <a href="#" class="block relative">
-                                        <img src="https://placehold.co/400x300/dbeafe/1d4ed8?text=Glassware+Reel" class="rounded w-full h-auto">
-                                        <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">
-                                            <svg class="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"></path></svg>
-                                        </div>
-                                    </a>
+                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                                 </div>
                             </div>
                         </div>
@@ -777,5 +724,3 @@
 
 </body>
 </html>
-
-

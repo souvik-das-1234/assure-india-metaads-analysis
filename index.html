@@ -294,7 +294,7 @@
                     </div>
                     <div class="metric-card">
                         <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                        <p class="text-center text-gray-500 mt-8">Data not available</p>
+                        <canvas id="celloChart"></canvas>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -341,7 +341,7 @@
                     </div>
                     <div class="metric-card">
                         <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                        <p class="text-center text-gray-500 mt-8">Data not available</p>
+                         <canvas id="wonderchefChart"></canvas>
                     </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
@@ -518,6 +518,32 @@
                         label: 'Borosil',
                         data: [93.88, 1.19],
                         backgroundColor: ['#3b82f6', '#3b82f6'],
+                    }]
+                },
+                options: { indexAxis: 'y', plugins: { legend: { display: false } } }
+            });
+            
+            new Chart(document.getElementById('celloChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Authority Score', 'Organic Traffic (in K)'],
+                    datasets: [{
+                        label: 'Cello World',
+                        data: [41, 137],
+                        backgroundColor: ['#f97316', '#f97316'],
+                    }]
+                },
+                options: { indexAxis: 'y', plugins: { legend: { display: false } } }
+            });
+
+            new Chart(document.getElementById('wonderchefChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Authority Score', 'Organic Traffic (in K)'],
+                    datasets: [{
+                        label: 'Wonderchef',
+                        data: [48, 3.3],
+                        backgroundColor: ['#ec4899', '#ec4899'],
                     }]
                 },
                 options: { indexAxis: 'y', plugins: { legend: { display: false } } }

@@ -41,159 +41,424 @@
             font-size: 0.875rem;
             color: #64748b;
         }
+        .tab-button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+        }
+        .tab-button.active {
+            background-color: #1e293b;
+            color: white;
+        }
+        .tab-button:not(.active) {
+            background-color: white;
+            color: #334155;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body class="text-slate-800">
 
     <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-        <!-- Slide 1: Title -->
-        <div class="slide text-center">
-            <h1 class="text-5xl font-extrabold text-slate-900">Competitor Analysis & Strategic Plan</h1>
-            <p class="text-xl text-red-600 font-semibold mt-2">Prepared for Assure India | August 2025</p>
+        <!-- Tab Navigation -->
+        <div class="mb-6 flex flex-wrap items-center gap-2">
+            <button class="tab-button active" onclick="openTab(event, 'Summary')">Summary</button>
+            <button class="tab-button" onclick="openTab(event, 'TTK')">TTK Prestige</button>
+            <button class="tab-button" onclick="openTab(event, 'Cello')">Cello World</button>
+            <button class="tab-button" onclick="openTab(event, 'Wonderchef')">Wonderchef</button>
+            <button class="tab-button" onclick="openTab(event, 'AGARO')">AGARO</button>
+            <button class="tab-button" onclick="openTab(event, 'Borosil')">Borosil</button>
         </div>
 
-        <!-- Slide 2: Competitor Strengths -->
-        <div class="slide">
-            <h2 class="slide-title border-green-500">Top 3 Competitor Strengths</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">🏆</span>
-                        <h3 class="metric-title">Digital Dominance (TTK Prestige)</h3>
+        <!-- Tab Content -->
+        <div id="Summary" class="tab-content active">
+            <!-- Slide 1: Title -->
+            <div class="slide text-center">
+                <h1 class="text-5xl font-extrabold text-slate-900">Competitor Analysis & Strategic Plan</h1>
+                <p class="text-xl text-red-600 font-semibold mt-2">Prepared for Assure India | August 2025</p>
+            </div>
+
+            <!-- Slide 2: Competitor Strengths -->
+            <div class="slide">
+                <h2 class="slide-title border-green-500">Top 3 Competitor Strengths</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">🏆</span>
+                            <h3 class="metric-title">Digital Dominance (TTK Prestige)</h3>
+                        </div>
+                        <p class="metric-description">With over <span class="font-bold">1 million monthly organic visitors</span> and <span class="font-bold">83.5K keywords</span>, TTK Prestige has built an almost unassailable SEO moat, driving massive brand awareness and trust.</p>
                     </div>
-                    <p class="metric-description">With over <span class="font-bold">1 million monthly organic visitors</span> and <span class="font-bold">83.5K keywords</span>, TTK Prestige has built an almost unassailable SEO moat, driving massive brand awareness and trust.</p>
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">💰</span>
+                            <h3 class="metric-title">Market & Financial Power (Cello World)</h3>
+                        </div>
+                        <p class="metric-description">A staggering <span class="font-bold">₹12,146 Crore market cap</span> and a vast distribution network of <span class="font-bold">145,000+ retailers</span> give Cello World immense scale and market control.</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">⭐</span>
+                            <h3 class="metric-title">Unique Business Model (Wonderchef)</h3>
+                        </div>
+                        <p class="metric-description">Their network of <span class="font-bold">82,000+ "Ladypreneur" direct sellers</span> creates a powerful, community-driven sales channel that is difficult for competitors to replicate.</p>
+                    </div>
                 </div>
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">💰</span>
-                        <h3 class="metric-title">Market & Financial Power (Cello World)</h3>
+            </div>
+
+            <!-- Slide 3: Competitor Weaknesses -->
+            <div class="slide">
+                <h2 class="slide-title border-yellow-500">Top 3 Weaknesses & Market Gaps</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">🚫</span>
+                            <h3 class="metric-title">The Paid Search Vacuum</h3>
+                        </div>
+                        <p class="metric-description">A critical, universal weakness: <span class="font-bold">ZERO major competitors are investing in paid search (PPC)</span>. This is an uncontested channel, wide open for a first-mover.</p>
                     </div>
-                    <p class="metric-description">A staggering <span class="font-bold">₹12,146 Crore market cap</span> and a vast distribution network of <span class="font-bold">145,000+ retailers</span> give Cello World immense scale and market control.</p>
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">📉</span>
+                            <h3 class="metric-title">Poor User Experience</h3>
+                        </div>
+                        <p class="metric-description">Key competitors have alarmingly high website bounce rates (<span class="font-bold">Borosil at 94%</span>, <span class="font-bold">AGARO at 78%</span>). This signals deep user dissatisfaction with their sites, a major vulnerability.</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">🎯</span>
+                            <h3 class="metric-title">Lack of Niche Focus</h3>
+                        </div>
+                        <p class="metric-description">Broad-portfolio giants often overlook high-volume, low-competition niches. Categories like <span class="font-bold">Air Fryers (156K searches/mo)</span> are underserved by the biggest players.</p>
+                    </div>
                 </div>
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">⭐</span>
-                        <h3 class="metric-title">Unique Business Model (Wonderchef)</h3>
+            </div>
+
+            <!-- Slide 4: Opportunities for Assure -->
+            <div class="slide">
+                <h2 class="slide-title border-blue-500">Top 3 Opportunities for Assure India</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">🥇</span>
+                            <h3 class="metric-title">Become the First Mover in Paid Search</h3>
+                        </div>
+                        <p class="metric-description">Immediately launch targeted Google Ads campaigns. By being the only advertiser, Assure can capture high-intent buyers for a fraction of the typical cost and build brand recognition fast.</p>
                     </div>
-                    <p class="metric-description">Their network of <span class="font-bold">82,000+ "Ladypreneur" direct sellers</span> creates a powerful, community-driven sales channel that is difficult for competitors to replicate.</p>
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">🎨</span>
+                            <h3 class="metric-title">Build a Superior Digital Experience</h3>
+                        </div>
+                        <p class="metric-description">Invest in a modern, fast, and user-friendly website. By creating a better experience than competitors, Assure can capture and convert the traffic that others are losing.</p>
+                    </div>
+                    <div class="metric-card">
+                        <div class="flex items-center mb-2">
+                            <span class="text-3xl mr-3">💡</span>
+                            <h3 class="metric-title">Dominate High-Potential Niches</h3>
+                        </div>
+                        <p class="metric-description">Focus initial content and SEO efforts on dominating underserved product categories. Become the go-to authority for products like Air Fryers and Dinner Sets before expanding.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Keyword Insights -->
+            <div class="slide">
+                <h2 class="slide-title border-purple-500">Key Keyword Insights</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 text-slate-800">Foundational Brand Keywords</h3>
+                        <p class="text-sm text-slate-600 mb-3">These must be the immediate focus for both SEO and PPC to build a baseline of brand recognition.</p>
+                        <ul class="space-y-2">
+                            <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">assure india</li>
+                            <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">assure products online</li>
+                            <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">assure kitchen appliances</li>
+                            <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">is assure a good brand</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 text-slate-800">High-Impact Product Keywords</h3>
+                        <p class="text-sm text-slate-600 mb-3">Target these keywords to capture users actively looking to purchase in high-opportunity categories.</p>
+                        <ul class="space-y-2">
+                            <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">buy air fryer online</li>
+                            <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">assure dinner set price</li>
+                            <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">best non-stick cookware india</li>
+                            <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">affordable dinner sets for gifting</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Actionable Next Steps -->
+            <div class="slide">
+                <h2 class="slide-title border-red-500">Actionable Next Steps</h2>
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-bold text-lg text-red-700">Phase 1: Foundation (0-3 Months)</h3>
+                        <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
+                            <li><span class="font-semibold">Launch Google Ads:</span> Immediately start PPC campaigns on brand and top 5 product keywords.</li>
+                            <li><span class="font-semibold">Build Backlinks:</span> Secure 30+ high-quality backlinks to begin building domain authority.</li>
+                            <li><span class="font-semibold">Redesign Website:</span> Overhaul key landing pages for a superior user experience.</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg text-red-700">Phase 2: Growth (3-6 Months)</h3>
+                        <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
+                            <li><span class="font-semibold">Scale PPC:</span> Expand campaigns to cover 20+ high-intent, non-brand keywords.</li>
+                            <li><span class="font-semibold">Engage Influencers:</span> Launch a micro-influencer program to build social proof.</li>
+                            <li><span class="font-semibold">Generate Reviews:</span> Implement a system to actively collect and display customer reviews.</li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h3 class="font-bold text-lg text-red-700">Phase 3: Leadership (6+ Months)</h3>
+                        <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
+                            <li><span class="font-semibold">Content Authority:</span> Build a comprehensive blog/resource hub to become a thought leader.</li>
+                            <li><span class="font-semibold">Strategic Partnerships:</span> Explore collaborations with complementary brands and retailers.</li>
+                            <li><span class="font-semibold">Remarketing:</span> Launch campaigns to re-engage past website visitors and build loyalty.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- Slide 3: Competitor Weaknesses -->
-        <div class="slide">
-            <h2 class="slide-title border-yellow-500">Top 3 Weaknesses & Market Gaps</h2>
-             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">🚫</span>
-                        <h3 class="metric-title">The Paid Search Vacuum</h3>
+        <div id="TTK" class="tab-content">
+            <div class="slide">
+                <h2 class="slide-title border-green-500">Competitor Deep Dive: TTK Prestige</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Key Metrics</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="font-semibold">Authority Score:</span> 53</li>
+                            <li><span class="font-semibold">Organic Traffic:</span> 1M / month</li>
+                            <li><span class="font-semibold">Organic Keywords:</span> 83.5K</li>
+                            <li><span class="font-semibold">Market Cap:</span> ₹9,199 Cr</li>
+                        </ul>
                     </div>
-                    <p class="metric-description">A critical, universal weakness: <span class="font-bold">ZERO major competitors are investing in paid search (PPC)</span>. This is an uncontested channel, wide open for a first-mover.</p>
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Strengths</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Unmatched SEO and organic reach.</li>
+                            <li>High brand trust and legacy.</li>
+                            <li>Excellent website user engagement.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">📉</span>
-                        <h3 class="metric-title">Poor User Experience</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Weaknesses</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>No investment in paid search.</li>
+                            <li>Potentially slower to innovate in new niches.</li>
+                            <li>Premium pricing may alienate some segments.</li>
+                        </ul>
                     </div>
-                    <p class="metric-description">Key competitors have alarmingly high website bounce rates (<span class="font-bold">Borosil at 94%</span>, <span class="font-bold">AGARO at 78%</span>). This signals deep user dissatisfaction with their sites, a major vulnerability.</p>
-                </div>
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">🎯</span>
-                        <h3 class="metric-title">Lack of Niche Focus</h3>
+                    <div class="metric-card bg-red-50 border-red-200">
+                        <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
+                            <li>Use PPC to appear above their organic listings.</li>
+                            <li>Target emerging product niches they are slow to adopt.</li>
+                            <li>Offer competitive pricing with a focus on value.</li>
+                        </ul>
                     </div>
-                    <p class="metric-description">Broad-portfolio giants often overlook high-volume, low-competition niches. Categories like <span class="font-bold">Air Fryers (156K searches/mo)</span> are underserved by the biggest players.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 4: Opportunities for Assure -->
-        <div class="slide">
-            <h2 class="slide-title border-blue-500">Top 3 Opportunities for Assure India</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">🥇</span>
-                        <h3 class="metric-title">Become the First Mover in Paid Search</h3>
-                    </div>
-                    <p class="metric-description">Immediately launch targeted Google Ads campaigns. By being the only advertiser, Assure can capture high-intent buyers for a fraction of the typical cost and build brand recognition fast.</p>
-                </div>
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">🎨</span>
-                        <h3 class="metric-title">Build a Superior Digital Experience</h3>
-                    </div>
-                    <p class="metric-description">Invest in a modern, fast, and user-friendly website. By creating a better experience than competitors, Assure can capture and convert the traffic that others are losing.</p>
-                </div>
-                <div class="metric-card">
-                    <div class="flex items-center mb-2">
-                        <span class="text-3xl mr-3">💡</span>
-                        <h3 class="metric-title">Dominate High-Potential Niches</h3>
-                    </div>
-                    <p class="metric-description">Focus initial content and SEO efforts on dominating underserved product categories. Become the go-to authority for products like Air Fryers and Dinner Sets before expanding.</p>
                 </div>
             </div>
         </div>
         
-        <!-- Slide 5: Keyword Insights -->
-        <div class="slide">
-            <h2 class="slide-title border-purple-500">Key Keyword Insights</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="font-bold text-lg mb-3 text-slate-800">Foundational Brand Keywords</h3>
-                    <p class="text-sm text-slate-600 mb-3">These must be the immediate focus for both SEO and PPC to build a baseline of brand recognition.</p>
-                    <ul class="space-y-2">
-                        <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">assure india</li>
-                        <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">assure products online</li>
-                        <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">assure kitchen appliances</li>
-                        <li class="bg-purple-50 p-2 rounded-md font-medium text-purple-900">is assure a good brand</li>
-                    </ul>
+        <div id="Cello" class="tab-content">
+            <div class="slide">
+                <h2 class="slide-title border-orange-500">Competitor Deep Dive: Cello World</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Key Metrics</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="font-semibold">Market Cap:</span> ₹12,146 Cr</li>
+                            <li><span class="font-semibold">Distribution:</span> 145,000+ retailers</li>
+                            <li><span class="font-semibold">Revenue Growth:</span> 16-19% CAGR</li>
+                            <li><span class="font-semibold">Portfolio:</span> Multi-category leader</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Strengths</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Massive financial and distribution power.</li>
+                            <li>Strong brand equity and consumer trust.</li>
+                            <li>Diverse product portfolio covering many needs.</li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <h3 class="font-bold text-lg mb-3 text-slate-800">High-Impact Product Keywords</h3>
-                    <p class="text-sm text-slate-600 mb-3">Target these keywords to capture users actively looking to purchase in high-opportunity categories.</p>
-                    <ul class="space-y-2">
-                        <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">buy air fryer online</li>
-                        <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">assure dinner set price</li>
-                        <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">best non-stick cookware india</li>
-                        <li class="bg-green-50 p-2 rounded-md font-medium text-green-900">affordable dinner sets for gifting</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <!-- Slide 6: Actionable Next Steps -->
-        <div class="slide">
-            <h2 class="slide-title border-red-500">Actionable Next Steps</h2>
-            <div class="space-y-6">
-                <div>
-                    <h3 class="font-bold text-lg text-red-700">Phase 1: Foundation (0-3 Months)</h3>
-                    <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
-                        <li><span class="font-semibold">Launch Google Ads:</span> Immediately start PPC campaigns on brand and top 5 product keywords.</li>
-                        <li><span class="font-semibold">Build Backlinks:</span> Secure 30+ high-quality backlinks to begin building domain authority.</li>
-                        <li><span class="font-semibold">Redesign Website:</span> Overhaul key landing pages for a superior user experience.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-red-700">Phase 2: Growth (3-6 Months)</h3>
-                    <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
-                        <li><span class="font-semibold">Scale PPC:</span> Expand campaigns to cover 20+ high-intent, non-brand keywords.</li>
-                        <li><span class="font-semibold">Engage Influencers:</span> Launch a micro-influencer program to build social proof.</li>
-                        <li><span class="font-semibold">Generate Reviews:</span> Implement a system to actively collect and display customer reviews.</li>
-                    </ul>
-                </div>
-                 <div>
-                    <h3 class="font-bold text-lg text-red-700">Phase 3: Leadership (6+ Months)</h3>
-                    <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
-                        <li><span class="font-semibold">Content Authority:</span> Build a comprehensive blog/resource hub to become a thought leader.</li>
-                        <li><span class="font-semibold">Strategic Partnerships:</span> Explore collaborations with complementary brands and retailers.</li>
-                        <li><span class="font-semibold">Remarketing:</span> Launch campaigns to re-engage past website visitors and build loyalty.</li>
-                    </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Weaknesses</h3>
+                         <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Lower SEO focus compared to TTK Prestige.</li>
+                            <li>Broad portfolio can lead to a lack of focus on specific niches.</li>
+                            <li>No investment in paid search.</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card bg-red-50 border-red-200">
+                        <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
+                            <li>Dominate specific product niches they overlook.</li>
+                            <li>Outperform them on SEO for targeted categories.</li>
+                            <li>Use PPC to capture traffic for their product categories.</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
 
+        <div id="Wonderchef" class="tab-content">
+            <div class="slide">
+                <h2 class="slide-title border-pink-500">Competitor Deep Dive: Wonderchef</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Key Metrics</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="font-semibold">Annual Revenue:</span> ₹800 Cr</li>
+                            <li><span class="font-semibold">Direct Sellers:</span> 82,000+</li>
+                            <li><span class="font-semibold">Retail Outlets:</span> 20,000+</li>
+                            <li><span class="font-semibold">Brand Ambassador:</span> Sanjeev Kapoor</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Strengths</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Unique and powerful direct selling model.</li>
+                            <li>High credibility from celebrity chef endorsement.</li>
+                            <li>Strong focus on innovation and premium products.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Weaknesses</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Smaller scale compared to market cap leaders.</li>
+                            <li>Reliance on a single celebrity for brand image.</li>
+                            <li>No investment in paid search.</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card bg-red-50 border-red-200">
+                        <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
+                            <li>Build a more diverse influencer marketing strategy.</li>
+                            <li>Compete on value for premium features.</li>
+                            <li>Use PPC to target customers searching for their products.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="AGARO" class="tab-content">
+            <div class="slide">
+                <h2 class="slide-title border-purple-500">Competitor Deep Dive: AGARO</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Key Metrics</h3>
+                        <ul class="text-sm space-y-2">
+                            <li><span class="font-semibold">Authority Score:</span> 35</li>
+                            <li><span class="font-semibold">Organic Traffic:</span> 259K / month</li>
+                            <li><span class="font-semibold">Bounce Rate:</span> 78.18%</li>
+                            <li><span class="font-semibold">Annual Orders:</span> 500,000+</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Strengths</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Strong SEO presence and traffic growth.</li>
+                            <li>Value-for-money positioning with premium features.</li>
+                            <li>Effective digital-first marketing strategy.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Weaknesses</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Very high bounce rate, indicating poor UX.</li>
+                            <li>Lower brand recognition than legacy players.</li>
+                            <li>No investment in paid search.</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card bg-red-50 border-red-200">
+                        <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
+                            <li>Create a superior website experience to capture their lost traffic.</li>
+                            <li>Build a stronger brand narrative around trust and quality.</li>
+                            <li>Use PPC to directly compete for their top keywords.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Borosil" class="tab-content">
+            <div class="slide">
+                <h2 class="slide-title border-blue-500">Competitor Deep Dive: Borosil</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Key Metrics</h3>
+                        <ul class="text-sm space-y-2">
+                           <li><span class="font-semibold">Authority Score:</span> 34</li>
+                            <li><span class="font-semibold">Organic Traffic:</span> 13.1K / month</li>
+                            <li><span class="font-semibold">Bounce Rate:</span> 93.88%</li>
+                            <li><span class="font-semibold">Market Cap:</span> ₹3,970 Cr</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Strengths</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Established brand name in glassware.</li>
+                            <li>Decent domain authority.</li>
+                            <li>Solid financial backing.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                    <div class="metric-card">
+                        <h3 class="metric-title mb-3">Top Weaknesses</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside">
+                            <li>Extremely poor website user experience (94% bounce rate).</li>
+                            <li>Very low organic traffic for its brand size.</li>
+                            <li>No investment in paid search.</li>
+                        </ul>
+                    </div>
+                    <div class="metric-card bg-red-50 border-red-200">
+                        <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
+                        <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
+                            <li>This is the easiest competitor to outperform on all digital fronts.</li>
+                            <li>A better website alone could capture their dissatisfied users.</li>
+                            <li>PPC can easily win traffic for their core product terms.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tab-button");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
 </body>
 </html>

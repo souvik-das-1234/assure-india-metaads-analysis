@@ -66,6 +66,13 @@
         .tab-content.active {
             display: block;
         }
+        .deep-dive-container {
+            height: 500px; /* Increased height */
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+        }
         .scrollable-section {
             height: 300px;
             overflow-y: auto;
@@ -94,6 +101,36 @@
             <div class="slide text-center">
                 <h1 class="text-5xl font-extrabold text-slate-900">Competitor Analysis & Strategic Plan</h1>
                 <p class="text-xl text-red-600 font-semibold mt-2">Prepared for Assure India | August 2025</p>
+            </div>
+
+            <!-- New Social Media Landscape Slide -->
+            <div class="slide">
+                <h2 class="slide-title border-blue-500">Social Media Landscape at a Glance</h2>
+                <div class="metric-card mb-6">
+                    <canvas id="socialFollowersChart"></canvas>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="metric-card">
+                        <p class="font-bold text-lg">Wonderchef</p>
+                        <p class="text-slate-500 text-sm">Daily Posts</p>
+                    </div>
+                     <div class="metric-card">
+                        <p class="font-bold text-lg">Havells</p>
+                        <p class="text-slate-500 text-sm">Daily Posts</p>
+                    </div>
+                    <div class="metric-card">
+                        <p class="font-bold text-lg">Borosil</p>
+                        <p class="text-slate-500 text-sm">3-4 Posts/Week</p>
+                    </div>
+                     <div class="metric-card">
+                        <p class="font-bold text-lg">Prestige</p>
+                        <p class="text-slate-500 text-sm">3-4 Posts/Week</p>
+                    </div>
+                </div>
+                <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-800">
+                    <h4 class="font-bold">Key Takeaway:</h4>
+                    <p>Wonderchef has a massive lead on Facebook (1.1M followers), while also having a strong Instagram presence (616K followers). This indicates a highly engaged community. Brands like AGARO and KitchenAid are significantly less active, presenting an opportunity for Assure to capture attention with a consistent posting schedule.</p>
+                </div>
             </div>
 
             <!-- Slide 2: Competitor Strengths -->
@@ -183,25 +220,33 @@
             <!-- Slide 5: Keyword Insights -->
             <div class="slide">
                 <h2 class="slide-title border-purple-500">Key Keyword Insights</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                     <div>
-                        <h3 class="font-bold text-lg mb-3 text-slate-800">High Volume Keywords (10k-100k Searches/Mo)</h3>
-                        <p class="text-sm text-slate-600 mb-3">Target these for broad reach and brand awareness. Competition is high.</p>
+                        <h3 class="font-bold text-lg mb-3 text-slate-800">High Volume (10k-100k Searches)</h3>
                         <ul class="space-y-2">
                             <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">dinner set</li>
-                            <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">tea cup set</li>
                             <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">juicer</li>
-                            <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">hair dryer</li>
+                            <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">airfryer</li>
                         </ul>
                     </div>
                     <div>
-                        <h3 class="font-bold text-lg mb-3 text-slate-800">Mid-High Intent Keywords (1k-10k Searches/Mo)</h3>
-                        <p class="text-sm text-slate-600 mb-3">Focus on these for users closer to making a purchase.</p>
+                        <h3 class="font-bold text-lg mb-3 text-slate-800">Mid Volume (1k-10k Searches)</h3>
                         <ul class="space-y-2">
-                            <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">microwave glass bowl</li>
-                            <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">glassware dinner set</li>
+                            <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">Assure products</li>
                             <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">best mixer</li>
-                            <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">electric lunch box</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 text-slate-800">Low Volume (10-100 Searches)</h3>
+                        <ul class="space-y-2">
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure mixer</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure non stick cookware</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure pressure cooker</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure roti maker</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure table fan</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure tower fan</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">grinders series</li>
+                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure dinner set</li>
                         </ul>
                     </div>
                 </div>
@@ -257,107 +302,61 @@
                         <canvas id="ttkChart"></canvas>
                     </div>
                 </div>
-                <div class="mt-8">
-                    <h3 class="metric-title mb-3">Marketing & Campaign Deep Dive</h3>
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div class="space-y-6">
-                            <div class="scrollable-section">
-                                <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/532602186_1192548086248482_2651224585249923489_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fGGkopUWuskQ7kNvwHCrOuT&_nc_oc=AdnsLDHT2OInodFdaecAhavnTMSVJ1YqPSuOy-nHN2zyxLw1Ci0s5vriKR6mUaF0qA-uMaEy7xRc-c-g-71s2B_p&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fixL3F8dUGRnpIuzxD-1TQ&oh=00_AfUMe0Qy_Iaw1amLKttGmB9DGfWBLSeyaESAgT-1BFUV8g&oe=68AD1698" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/517426868_1163417565828201_5543129247848137541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HWXbSwh3GcoQ7kNvwFfIZey&_nc_oc=AdnXs4Brb5E1z5yqCS77NrlH8lLTXrXeK0u1j_tQPdtW8yQfkKTYRTJ8hoNcj7uKXAI9ABngnRKEY1ehxHxddJ9z&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fTfEFKAz_CQzZXzTHzQQ2w&oh=00_AfUdT9hoxeiOuI0I3r6hdiag6BgMLOdwssV0pIxXGao6OA&oe=68ACE39D" class="rounded w-full h-auto mt-4">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/487843576_1081637347339557_1550545014097178197_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=iRINNrS0JHUQ7kNvwH25VLm&_nc_oc=AdmcPJq7iMJTDWfBCrhH0vB1_FBc7AqY5VrmpcChtZIS2x18alEVILzkGjFaDkoEKmQaKx2KgdGy4ebuk9uKxB22&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=uLhSuTcZqwigCokDcZSj1Q&oh=00_AfX0u6P7RjJoVQCDMPWYdrwjCBHjFNNqYl-vpcFUu6qZbw&oe=68AE0288" class="rounded w-full h-auto mt-4">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/487872928_1084133603756598_6460681272089520239_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=MkP3twBl700Q7kNvwEcOpLs&_nc_oc=AdmwaQcBq-ZNm-PplVfaXR325zhMHl-UoYJOjhQO1cE5P_a-2k0uF1YeSCmkIgWjRsVj7zr6sc0yqSOU-GIch930&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=7DiEpfv4P_HX83vX1ZzBGQ&oh=00_AfUhqmP-vX52OqJXfUzWZ73vN3wpOWXLGyWIehnjbJcmcg&oe=68AE1638" class="rounded w-full h-auto mt-4">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/484943494_1071857728317519_2065051100669623949_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tg2vRn1RvE4Q7kNvwEIA_O_&_nc_oc=AdlT4_T7PDL919NF6kPAsu2YaOf84MMWvT070Xfj7cec9blO2t2nhrhxfjN5bvHEHPN6KP5Yg0lmBX78lN4gUl9k&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=ejl4nqrP0gJ3HTqsMxEccQ&oh=00_AfVJuJzVGXqRss2XR9tucLp0b3-pU6M50aaHHhpIURKQcQ&oe=68AE04B9" class="rounded w-full h-auto mt-4">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/482343525_1060530166116942_588227824817158257_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=zReiefqUdoUQ7kNvwFflWSQ&_nc_oc=Adm6P5opnNyjH5oa38RqCog0NeS96VaK6QRqhSpLkf5-PNcUwwYZrv2oZtg8AfK8aWy3GWwihepptB474tawvYSN&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=ADTH1ebDqdOymJ-WNmt_-w&oh=00_AfXjfWHtkZro0rv1mC1wuW_G9mi22cx57ihkNij2JhwRew&oe=68AE10F5" class="rounded w-full h-auto mt-4">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/480750888_1047907324045893_5070449244064343162_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=twM0e97MAYgQ7kNvwFn9ITw&_nc_oc=Admrboc3SdUnF2vLNopCFD7H70HkPwwt_byEdwIiOhrbwW3wdiI7stNjGo17Hc-5h84ySJKKfD12QPAR_J489vMF&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=kuBqO8XlaEkxH5BBsm9qgQ&oh=00_AfWlh3-9PD8zmaSNbc_el0_Wiq58Nd0naam2HM-x0ZCYqw&oe=68AE36D2" class="rounded w-full h-auto mt-4">
-                                <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t39.30808-6/522925810_1174985814671376_6358544683142812134_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7E1dNDulhy0Q7kNvwGqwvLU&_nc_oc=AdmdaN8toIidf2I1TXKGWwnPQ3e5L9pLzNp5FIrHv4MfMRxSAfC8OnMcSIlCeJq9UZI&_nc_zt=23&_nc_ht=scontent.fccu2-2.fna&_nc_gid=hITaUCSUUlmo7r8fb5iWgg&oh=00_AfVsoz1n3dCPU-lNmBTebL5lNwupfD3ClJpR84ZXlzoL4A&oe=68AE0F0A" class="rounded w-full h-auto mt-4">
+                <div class="mt-8 deep-dive-container">
+                    <div class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="metric-card col-span-1">
+                                <h3 class="metric-title mb-3">Top Strengths</h3>
+                                <ul class="text-sm space-y-2 list-disc list-inside">
+                                    <li>Unmatched SEO and organic reach.</li>
+                                    <li>High brand trust and legacy.</li>
+                                    <li>Excellent website user engagement.</li>
+                                </ul>
                             </div>
-                            <div class="scrollable-section">
-                                <h4 class="font-bold text-lg mb-2">Event Banners</h4>
-                                <img src="https://images.jdmagicbox.com/v2/comp/ernakulam/z9/0484px484.x484.130921150727.z8z9/catalogue/ttk-prestige-limited-kochi-mg-road-ernakulam-commercial-juicer-distributors-prestige-kpm88tqhk0.jpg" class="rounded w-full h-auto">
-                                <img src="https://tma-live.s3.ap-south-1.amazonaws.com/gallery/uploads/Sat%20Oct%2002%202021%2002%3A09%3A45%20GMT%2B0000%20%28Coordinated%20Universal%20Time%29.png" class="rounded w-full h-auto mt-4">
-                                <img src="https://ttkprestige.com/wp-content/uploads/2022/02/about-us-1.jpg" class="rounded w-full h-auto mt-4">
-                                <img src="https://static.toiimg.com/thumb/msid-123111113,imgsize-68158,width-400,resizemode-4/123111113.jpg" class="rounded w-full h-auto mt-4">
+                            <div class="metric-card col-span-1">
+                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
+                                <ul class="text-sm space-y-2 list-disc list-inside">
+                                    <li>No investment in paid search.</li>
+                                    <li>Potentially slower to innovate in new niches.</li>
+                                    <li>Premium pricing may alienate some segments.</li>
+                                </ul>
                             </div>
-                             <div class="scrollable-section">
-                                <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
-                                <iframe width="482" height="857" src="https://www.youtube.com/embed/8oi8Fp3u2VA" title="Prestige multi cooker 1.5L | how to use multi cooker | better kettle | प्रेस्टीज मल्टी कुकर" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                <iframe width="424" height="238" src="https://www.youtube.com/embed/XYXFraRDv9I" title="#LetsGetCooking with TTK Prestige" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                <iframe width="485" height="857" src="https://www.youtube.com/embed/cVoUr4b2spI" title="The Prestige Air Chef" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                 
-                                 
-                                 
+                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
+                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
+                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
+                                    <li>Use PPC to appear above their organic listings.</li>
+                                    <li>Target emerging product niches they are slow to adopt.</li>
+                                    <li>Offer competitive pricing with a focus on value.</li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="space-y-6">
-                            <div class="scrollable-section">
-                                <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
-                                <div class="grid grid-cols-2 gap-2">
-                                    <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/532706115_1192711372898820_9203677953563270191_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Au7erLGalKAQ7kNvwFKYynm&_nc_oc=AdnZxPFop-8VukwLHWOJTPk_aessL_hQdLupozHEMWb6O82V2T1PZakMvLnA3GIOF0Q&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=Q_v0HZ6dVIfgyD8onlOM3Q&oh=00_AfX7m52D_u1oJrDGGPydFkvksbZiJ0CYJIXsItr6omyjNQ&oe=68AE323F" class="rounded w-full h-auto">
-                                    <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/532602186_1192548086248482_2651224585249923489_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=1L4tf1SQ2SwQ7kNvwGsQov2&_nc_oc=AdmlbQFtt4StNr0rZ7VjrBIZfWtDoZX4wedKEpgKFYk-qjbkeJRxz0qjIaqOkZkWwcs&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=vSkfT7CWteET2UaZhoB3JA&oh=00_AfV8skrKm2a9REj2IEuikhm4cG5q5IfXSV_n26aKHg6T_g&oe=68AE2FD8" class="rounded w-full h-auto">
-                                    <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t39.30808-6/528692799_1184092300427394_1994296621379694264_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=AiXwcxNobFYQ7kNvwG_FvYe&_nc_oc=AdlRhXUqjmFlNLmDTVBukJpsYqeFc2krRXRs4-vkbzSIOhkslb-DfSrLdx8Jxu8d0n4&_nc_zt=23&_nc_ht=scontent.fccu2-2.fna&_nc_gid=P5Os5zRq-f4KBKoaws59iQ&oh=00_AfUfSFCu9UNvXCw6IFrkTPjQ0TXBYeaTIfCeDQk59FCuBA&oe=68AE1797" class="rounded w-full h-auto">
-                                    <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/527331623_1183057147197576_6429163481495247956_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hRX7CfR8h0oQ7kNvwHub0gX&_nc_oc=AdkCT41wB65cVcmJQHOadV1Iw2KKd9-XLe-IoD0wz3GiBSDMgBlhfMAMgV3SmANmqXo&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=WDjgTDDkW6ia_L9J0WaKDQ&oh=00_AfULUjiQCbzxCAv0zx6NOsGkzJ7jnYi66Ie9DBQNcI1Ndg&oe=68AE1703" class="rounded w-full h-auto mt-4">
-                                    <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/525711005_1180649504105007_831985997918180708_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=hXI6zzXbbXIQ7kNvwGGBHOm&_nc_oc=AdnSPyHYQCuml7HowYt27tWeiMlnyZetCGIPSSrsLzAdS-nLstmpzU_FEWaXhpZXQiY&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=_gJ45wbtjdDHjmFEvpSL6g&oh=00_AfVc71saP7yscpm9xXUx30zIPSjrAcp-5guSxqCkownqpA&oe=68AE418C" class="rounded w-full h-auto mt-4">
-                                    <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t39.30808-6/524541076_1178209294349028_3025393071917002449_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tCBCXUencpQQ7kNvwHhWYyN&_nc_oc=Adn-_HwUD0kaDG55M3nGvEoQ8-7AaDTOwmWOZv4QPGPB0pAw6c-7693e29bgPSABgWw&_nc_zt=23&_nc_ht=scontent.fccu2-2.fna&_nc_gid=WInlsWxLNpsZ5wK_B0_JTg&oh=00_AfVQ1oSJY0MZsdmRqn6NwOHwMlAn7taDE3VsKbJMFMZGXA&oe=68AE3FEC" class="rounded w-full h-auto mt-4">
-                                    <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/523324745_1175746644595293_4646251790968918182_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=tm9SQjWJ_iIQ7kNvwHAHH8z&_nc_oc=AdkQ9XhSUTAKAn02ikw_JVGy7_WtMeLYES0MPOPTkuyeEdqD5qP9kFA4tT7yvks_vyw&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=oifB_F7d45pvIBRAaDzZGQ&oh=00_AfUL_zN5cr1XZBk6PbXrLxvBaenVp0nxyvkVnwIDfJJgzQ&oe=68AE1AB2" class="rounded w-full h-auto mt-4">
-                                    <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t39.30808-6/522925810_1174985814671376_6358544683142812134_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=7E1dNDulhy0Q7kNvwGqwvLU&_nc_oc=AdmdaN8toIidf2I1TXKGWwnPQ3e5L9pLzNp5FIrHv4MfMRxSAfC8OnMcSIlCeJq9UZI&_nc_zt=23&_nc_ht=scontent.fccu2-2.fna&_nc_gid=hITaUCSUUlmo7r8fb5iWgg&oh=00_AfVsoz1n3dCPU-lNmBTebL5lNwupfD3ClJpR84ZXlzoL4A&oe=68AE0F0A" class="rounded w-full h-auto mt-4">
-                                </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
+                            <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/532602186_1192548086248482_2651224585249923489_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fGGkopUWuskQ7kNvwHCrOuT&_nc_oc=AdnsLDHT2OInodFdaecAhavnTMSVJ1YqPSuOy-nHN2zyxLw1Ci0s5vriKR6mUaF0qA-uMaEy7xRc-c-g-71s2B_p&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fixL3F8dUGRnpIuzxD-1TQ&oh=00_AfUMe0Qy_Iaw1amLKttGmB9DGfWBLSeyaESAgT-1BFUV8g&oe=68AD1698" class="rounded w-full h-auto">
+                            <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/517426868_1163417565828201_5543129247848137541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HWXbSwh3GcoQ7kNvwFfIZey&_nc_oc=AdnXs4Brb5E1z5yqCS77NrlH8lLTXrXeK0u1j_tQPdtW8yQfkKTYRTJ8hoNcj7uKXAI9ABngnRKEY1ehxHxddJ9z&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fTfEFKAz_CQzZXzTHzQQ2w&oh=00_AfUdT9hoxeiOuI0I3r6hdiag6BgMLOdwssV0pIxXGao6OA&oe=68ACE39D" class="rounded w-full h-auto mt-4">
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
+                            <img src="https://images.jdmagicbox.com/v2/comp/ernakulam/z9/0484px484.x484.130921150727.z8z9/catalogue/ttk-prestige-limited-kochi-mg-road-ernakulam-commercial-juicer-distributors-prestige-kpm88tqhk0.jpg" class="rounded w-full h-auto">
+                            <img src="https://tma-live.s3.ap-south-1.amazonaws.com/gallery/uploads/Sat%20Oct%2002%202021%2002%3A09%3A45%20GMT%2B0000%20%28Coordinated%20Universal%20Time%29.png" class="rounded w-full h-auto mt-4">
+                        </div>
+                         <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
+                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/8oi8Fp3u2VA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
+                            <div class="grid grid-cols-2 gap-2">
+                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/532706115_1192711372898820_9203677953563270191_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Au7erLGalKAQ7kNvwFKYynm&_nc_oc=AdnZxPFop-8VukwLHWOJTPk_aessL_hQdLupozHEMWb6O82V2T1PZakMvLnA3GIOF0Q&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=Q_v0HZ6dVIfgyD8onlOM3Q&oh=00_AfX7m52D_u1oJrDGGPydFkvksbZiJ0CYJIXsItr6omyjNQ&oe=68AE323F" class="rounded w-full h-auto">
+                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/532602186_1192548086248482_2651224585249923489_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=1L4tf1SQ2SwQ7kNvwGsQov2&_nc_oc=AdmlbQFtt4StNr0rZ7VjrBIZfWtDoZX4wedKEpgKFYk-qjbkeJRxz0qjIaqOkZkWwcs&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=vSkfT7CWteET2UaZhoB3JA&oh=00_AfV8skrKm2a9REj2IEuikhm4cG5q5IfXSV_n26aKHg6T_g&oe=68AE2FD8" class="rounded w-full h-auto">
                             </div>
-                            <div class="scrollable-section">
-                                <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
-                                <div class="grid grid-cols-3 gap-2">
-                                    <blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DL6xNvCvGGR/" 
-    data-instgrm-version="14">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-                                    <blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DNgFLrTPbY2/" 
-    data-instgrm-version="14">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DM7lkL3po_t/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin:auto;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote 
-    class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DNZwyVJMqww/?utm_source=ig_embed&utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DM4d-dpJ3RM/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DMz9H94Tg4m/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DMxajjNJUtY/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DMiCDlOJ5h3/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin:auto;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-
-                                    
-
-                                   
-                                </div>
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
+                            <div class="grid grid-cols-3 gap-2">
+                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
                             </div>
                         </div>
                     </div>
@@ -411,80 +410,33 @@
                                 </ul>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="metric-title mb-3">Marketing & Campaign Highlights</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Occasion Post </h4>
-                                    <img src="https://placehold.co/400x300/ffedd5/c2410c?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Event Banner</h4>
-                                    <img src="https://placehold.co/400x300/ffedd5/c2410c?text=Exhibition+Gate" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                            </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
+                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=Happy+Durga+Puja" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
                         </div>
-                        <div class="metric-card">
-                            <h4 class="font-bold text-lg mb-2">Facebook Posts</h4>
-                            <div class="grid grid-cols-3 gap-2">
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
+                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=Exhibition+Gate" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
+                        </div>
+                         <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
+                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
+                            <div class="grid grid-cols-2 gap-2">
                                 <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t51.82787-15/526599480_18471727189077889_6347163690697537762_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=mWX8ZuMh8aEQ7kNvwHO9JXz&_nc_oc=Adnt9cBwElZCxsZBx0Pw5JOmxK0AZ1ogQt-lC-U0LhiJvS2RBSiHK4kKVKBkHwtC35pCAlG9_DtkF-2iJJ1iipss&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=GSk247OpfReCZYoWvupmtQ&oh=00_AfXy1VIlTbzpjVK_M3mCUBXx475iX_5MnB36l_Zhz9cY7Q&oe=68AE0D6D" class="rounded w-full h-auto">
                                 <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/526043255_1088004980000517_2741631701593026176_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_aid=0&_nc_ohc=qP4x1yX6RxUQ7kNvwGRDD4X&_nc_oc=AdkOgP9FLmSFRm3pEBKCP8LqbLFX8A4GDjIEsnVT1Lfvfs-SfdgL5km2wojMHn1it5kh51T9hlBrmmg20X0Rdjzu&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=Q54be-ImHgTTiMM08FGhlA&oh=00_AfXnu_eGlYh8p1snZRMsHObqpkXlw-VR75sGCYEW4Y3Drw&oe=68AE13D2" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/524775009_1087180620082953_7183009549163484434_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=XPspd9oBmvoQ7kNvwEB1ETQ&_nc_oc=Adnvog_NLRimHtVXaNngZJIsQtrPE7NyxedUHYwMQBC7_4s5rGzgROepjqgRkhrmAW8YTxDy-EzrTIWq2dQXh9Nb&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=OCpyC0QqFGYRZm8l10FSiw&oh=00_AfXPeOOBfjStIu0zxfZCcdGL_VmsroWHb5eBk4goKssYfw&oe=68AE0F41" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t51.82787-15/520286713_18469243564077889_4527934316239256230_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=cvY_sMK48R0Q7kNvwHK_aF2&_nc_oc=AdkdXa1NcNm0VbozYHmX2ykfJyc84cMUOKVYiIyiQnDraCF8EJme5d4mTqmDKw4x6XO5vpyu9t9oHV9jIsIX8ZHv&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=fCK3DxlDCdUanpzEOBjfqQ&oh=00_AfVhzXljaG68IUrR4OaDF9RUMLvITd9Yfn1n-pD2pMKQHg&oe=68AE0F07" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/505767915_18463967518077889_3079287931890201292_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=R9doDFIScsUQ7kNvwHmFfjf&_nc_oc=AdmXS-1A2yeUnOeh-BIUh6X4zGA90v3r15Wj73gypdO_cOUlYAEyi65rkM5joYKtkQFVykKjK32SuBBq4e2TzlGc&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=PAujb7k0DhEPlva-yuf-gg&oh=00_AfXvaRZd6St7Up0Q4wjNwMK5fpqR2EmmMeY7NUgL58s89A&oe=68AE106C" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/501939686_18460772503077889_8117034853613804662_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ho9-vtQQ08wQ7kNvwHhI5LA&_nc_oc=AdkNEOgxN71s3e8KSAimyU9Ph9_FkKexEhVb3w-LsPbuhQrcXxrlF7rjiUc8d1tBG9LcOFD2PjlRWXGEUmA33yta&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=rrlyTeMiGodceqRNDAtfIQ&oh=00_AfXfAnUI-qwKNNqE5lsh5m6-6zV4YApMOWdrmE12fC8ObQ&oe=68AE1426" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/502050670_18460610368077889_4563763900021066940_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Ml8Uz_lWcj0Q7kNvwFIkQRy&_nc_oc=Adnko6A0nhHZkf_rP5QVQ2MrCUlwP3hZPPxlPkYveypXKKobBDhdmVMltygl0hNSNvUaosNHUYCenbBUFHxlqPD0&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=bOqwyUcw4TnChxCaJW6bag&oh=00_AfXA_vQCKzta3UpEaFp-fQdAY2M_-lGylEtm9bbBtV3aQw&oe=68AE2EF9" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t51.75761-15/499494700_18459289069077889_4869170699940096_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eMGVxQwPBAsQ7kNvwHP869z&_nc_oc=AdmQa3D3g4gOg-7lg97BAqQyOMqONRB1bQqaq7i15ew_r1IKRLUIZMVSdXS8glcS7KKaL327vx-O9plA3LrZB2_S&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=mGezqzjG84n8FodHuzK_gA&oh=00_AfVz7jsFBx8QoQ9TuTX0SRISqo7WkDx-HYNjRhNCJZ26Ug&oe=68AE2E46" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/496547152_18457926280077889_2387206834628392653_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Lt021CHB9ssQ7kNvwHad-aS&_nc_oc=AdkaK6PFzSC6_sCGjQRQ6wMXWiXtUlL3k2mxdtdhkvu45Ed3qsQTW87toEXWNYON53aHgv0Gclke_kUpgFlGq5Z7&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=qCviZp036KO_DD0HsvZe6w&oh=00_AfUehUjuTU8Q4-CIpoJsNKxDobp9d8afEb4RMrjiUzXY5w&oe=68AE0AC7" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t51.75761-15/491438273_18454609138077889_6858003272825811412_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=AzRz-mFMBr4Q7kNvwGzHP_N&_nc_oc=AdkoX0qgJs8qvkHmCo3H2JwTd-0im5tXLySNqxbgO9fTusQHQDz6UpxbNLF1uRW-MVjl8hWdrJzGgabR0uc30ot4&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=-HQaH1LJt0GMn0GqCsgLOA&oh=00_AfVAbRv9QRa_muWJ2pvj-Zr-ASAmINp0SmDb6yop4bixkA&oe=68AE22F1" class="rounded w-full h-auto">
                             </div>
                         </div>
-                        <div class="metric-card">
+                        <div class="scrollable-section">
                             <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
                             <div class="grid grid-cols-3 gap-2">
-                                <blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DMiCOGjRx4u/" 
-    data-instgrm-version="14">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DMc4G9LsFTa/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin:1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DMQGj93R3ii/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DK6BLo6xMs2/?utm_source=ig_embed&utm_campaign=loading" 
-    data-instgrm-version="14"
-    style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DKKD47Ws1PF/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
-</blockquote>
-
-<!-- Instagram Embed Script -->
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DKHkDqBR3U6/" 
-    data-instgrm-version="14">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-
-                                
+                                <img src="https://placehold.co/150x150/ffedd5/c2410c?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/ffedd5/c2410c?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/ffedd5/c2410c?text=Post" class="rounded w-full h-auto">
                             </div>
                         </div>
                     </div>
@@ -538,122 +490,33 @@
                                 </ul>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="metric-title mb-3">Marketing & Campaign Highlights</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Occasion Post</h4>
-                                    <img src="https://placehold.co/400x300/fce7f3/db2777?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Event Banner</h4>
-                                    <img src="https://placehold.co/400x300/fce7f3/db2777?text=Exhibition+Gate" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                            </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
+                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=Happy+Durga+Puja" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
                         </div>
-                        <div class="metric-card">
-                            <h4 class="font-bold text-lg mb-2">Facebook Posts</h4>
-                            <div class="grid grid-cols-3 gap-2">
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
+                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=Exhibition+Gate" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
+                        </div>
+                         <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
+                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
+                            <div class="grid grid-cols-2 gap-2">
                                 <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/534775020_1121698810051924_6101461148272083241_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=jp2idZ6DePAQ7kNvwESzhh4&_nc_oc=AdmkX0c2FPCwx8ehsiBMR_hUR1J9hUOyfLzCT0sRlc1sQYm5QI1UZw6ArLpWcS0FC4TNz8Lx1CDwRpufKxpFsUoS&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=VYF_8blAuAf361bcQQrcYQ&oh=00_AfVhsc3wq9gGZvNVsK-vAY-2sghDg5Q8PNgyjb3ItebeIQ&oe=68AE21D3" class="rounded w-full h-auto">
                                 <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/532259693_1120989346789537_5574425289449323129_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BpgtXthAco0Q7kNvwElilzG&_nc_oc=AdkEgUpo0UCMvwU6G88qDnWyZ-Db8w9_QRMlrgqw5KQuaOAjZ_UahZrTR1Aile43zku2g6rt9kE1yCpDzAa7SxcT&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=nkHVEcZxfxMWKIZbU4W1DA&oh=00_AfXjWvi2Hk8KucB_h8qgSLNdTU6YQXL6Rm_vDSZjQXnU-g&oe=68AE1218" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/528919032_1116416757246796_4656590671224016888_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aL7TiSRI2wAQ7kNvwHw3YMI&_nc_oc=Adkxze8Y4rpvbT4mVbwoa8vqsCXB4Ly9zLIq_J9ht9_6h6LjDhYm0RZ65mDyh9pZ3qWleSR9iix-_m8CWu27xDQU&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=HVEjk2jk8NtnT-siqaFbXg&oh=00_AfV_UiX-vla1tPSUOplVoWAtNX5f0OjEmUGeHaE8Ws5mFA&oe=68AE1D8D" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/513153135_1083284903893315_1221226146828238356_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IPKb5I4Jj2UQ7kNvwHEMjq2&_nc_oc=AdkLssN7FpB9uW81OUmK6E5g4g1m2w1Ulz9TTv_tazgrMknNl1YynOTHDX-UG0WQ6zz6mHOwKPTa-hj77NDkpiK8&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=vHTcX-C2awSG6nzSo8BJ7g&oh=00_AfUbmWTcntEk_1DaGpSVqiprm9SEU4QZiTtuYAaYzK_jGg&oe=68AE3570" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/507176457_1073950361493436_6524592893426138890_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=D9M0TeF5f4oQ7kNvwEa-tRu&_nc_oc=AdmL9EBlBhsSwp-VinwjZYunsqX4Ik_sx6IjmNWmht_a21eLqBh3fX8b1zDlA_b47Wel7SILIXyNCOSLUVa-MKIB&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=Nc_v7TOdPjhQwGToXHsw4w&oh=00_AfW7WFlexog2JsVYP0yUKQmle532PrJy6FKDC73piGOnlw&oe=68AE15D8" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/504718428_1068707218684417_241866711183154899_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sIRx22ijcK8Q7kNvwFWFFFw&_nc_oc=Admzuwmd_3e0UxB2SanENeF6ICIB4vYvvrhGnJfZ6xWn3Un_A4bvV4viwg6vSYuVOM-FICKX0xr4rJCVOZw2MCeX&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=2L0TM-qpGdwdviGiokugYg&oh=00_AfUtsvRMwFZe_A0c44UX65bz6CgXyDXdTkZ3952S61KRQg&oe=68AE2819" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/503259176_1066972675524538_6490878265411167313_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=4rJHkh_UBcEQ7kNvwGrJz-F&_nc_oc=Adnsw4YeHCB-x81wc8TXULV8zohvlZlGPwZMzt_LhB8IRtqp8Py8fmtltzQKL8DrKZZuvlHCTNsVEKxBf635VQG4&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=f2iXWmzjKR-2jWM6dZfp9Q&oh=00_AfWN4cGWmy9r_tYI8Gpa7y0gntHzvxr1qwphkKegwtCRkA&oe=68AE419E" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/495384021_1044408194447653_7065649679981243630_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=HXmekvZSahoQ7kNvwHAVAGY&_nc_oc=AdlkLrQCuHCEcVNUYU5L5CwUu6wvuNh8RZ-_CZ8JRas-fvzIk1563I2OXSUc_DVqRPuyzRDLZ_PO1lCx_4ssiTtr&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=uHKTmhfnbVU7TXdBx6Ro-g&oh=00_AfUtMJgXmfSpw3HzoBj451hf7neAPnYfYo9J2SOio9vTGA&oe=68AE1369" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/487491898_999836045571535_7943508882733008682_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=8DMwbkFMR8gQ7kNvwFM1uHG&_nc_oc=Adm_xdwF2SlAMbjtUEhr65kn9R8rAUrqTtnJLHmoZGCaTPaqoff6uUGEGCAg1MxSX8G4NbB8mn9CKC9EnJ20avRp&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=3SDMQhIy1vPb8xQ5EwceAQ&oh=00_AfVsUE3UJ4kQa0tGVl85g9xAAZdRuyHEiM1Y8ylSIACbjQ&oe=68AE1D3E" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/482007953_984656333756173_8190055992934891133_n.jpg?stp=dst-jpg_s640x640_tt6&_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=DwFBiVWelsQQ7kNvwGcJudg&_nc_oc=AdlIy547Vq7REI3mS5YE6HswLHYz1wlWgxlnLM_UX7qp6-ZcPBOQm1nqMjI9mrLr-8Tv6TOxEGXlw8kOa0lDjLeR&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=4UF_T6p9DW2Dtl685eZYKw&oh=00_AfWT5d7EX0U4QXUUegmI9n_8X1cRjCO_OX37Jx7gHYSskQ&oe=68AE35A3" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t39.30808-6/481765397_978582407696899_1269417016561773041_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=V_3W09VYMGcQ7kNvwHZ4LL9&_nc_oc=Adn0R7wGwQlLLGQiKnKWJGMKsqZXIUKBle4TEcdpymK9FoGYlFze0rnnHWmRQNjn4xAB-Oy3coW6AVgVqOwQr1bi&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=I0y13BKZSkkYM4GOQvYSOQ&oh=00_AfXIeGWJmRmbLeSj0XV50ciFc7eB8nyTMSG-bkzD7x-ByA&oe=68AE1128" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/481216783_978526831035790_4911321218259987415_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=JykMkSP7Sy8Q7kNvwHQ254Q&_nc_oc=AdkEYg9ZMf-N2XZfq0M-7GXjQ9byke23-C3NLJPvdLzBPVsVQ5G9-iqjQuR5-KLmj0_rmJMzFZebG0X-Yj6LVvSl&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=bmwBwdfeKIo8-c9b8Gh2Aw&oh=00_AfVckk8b4LSlkNcTVF0doFwz2qj3d1kUtMlbfih9gDs0cw&oe=68AE1FF2" class="rounded w-full h-auto">
                             </div>
                         </div>
-                        <div class="metric-card">
+                        <div class="scrollable-section">
                             <h4 class="font-bold text-lg mb-2">Instagram Grid (525K+ Followers)</h4>
                             <div class="grid grid-cols-3 gap-2">
-                                <blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DNZwMYUI_Qs/?utm_source=ig_embed&utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin:auto;">
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DNW65bINlRO/?utm_source=ig_embed&utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; border-radius:3px; margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DNGNbw1ymWI/?utm_source=ig_embed&utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin:auto;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DLJZWhQykRL/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin: auto;">
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DKllVUJykWj/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DKgNReJNjWC/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);">
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote 
-  class="instagram-media" 
-  data-instgrm-permalink="https://www.instagram.com/p/DKcVosVysZW/?utm_source=ig_embed&amp;utm_campaign=loading" 
-  data-instgrm-version="14" 
-  style="max-width:540px; min-width:326px; width:99.375%; margin:auto; border:0; padding:0;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DKWEiwMC1Xc/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin: auto;">
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DJy0vBeNSNw/?utm_source=ig_embed" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; width:100%; margin:auto;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DJUM5t9t10s/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DIpwwXJy-Bt/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DLJZWhQykRL/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-
+                                <img src="https://placehold.co/150x150/fce7f3/db2777?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/fce7f3/db2777?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/fce7f3/db2777?text=Post" class="rounded w-full h-auto">
                             </div>
                         </div>
                     </div>
@@ -707,124 +570,33 @@
                                 </ul>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="metric-title mb-3">Marketing & Campaign Highlights</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Occasion Post </h4>
-                                    <img src="https://placehold.co/400x300/f3e8ff/7e22ce?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Event Banner</h4>
-                                    <img src="https://placehold.co/400x300/f3e8ff/7e22ce?text=Exhibition+Gate" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F351334780831771%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1396691394609810%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1396691394609810%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1103428134153586%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F197108463248709%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F598198358981991%2F&show_text=false&width=476&t=0" width="476" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F607847720654769%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1327753177742084%2F&show_text=false&width=267&t=0" width="267" height="476" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
-                                    
-                                </div>
-                            </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
+                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=Happy+Durga+Puja" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
                         </div>
-                        <div class="metric-card">
-                            <h4 class="font-bold text-lg mb-2">Facebook Posts</h4>
-                            <div class="grid grid-cols-3 gap-2">
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
+                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=Exhibition+Gate" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
+                        </div>
+                         <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
+                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
+                            <div class="grid grid-cols-2 gap-2">
                                 <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/485765194_1074526834711246_6247238746474029074_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_6ueFYSETr4Q7kNvwFvmzyK&_nc_oc=AdkePbu4__5koSc3kUXjc5kuTkLtGG2Al4wu1xLFugl7xgikf8UQsfZ0mMhXVTN0HO0&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=FxSkEXB-g9zCFzGmG9LKcQ&oh=00_AfWs9dJh1Job21mYGs78RSbVgT-9AuQT2o8oTnZhrBPEuA&oe=68AE3EAF" class="rounded w-full h-auto">
                                 <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.75761-15/467947959_18093539089494715_6791818418474648417_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=lclYBfqLsf4Q7kNvwFx3lBy&_nc_oc=AdmN1FnkB1SsCNlJJZi7AJ6x4pKmGwosmicVBSy8uxbDMtfRHbFjNu562pnVTB_GS24&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=A6u-I2_ypu7EXro65Vi7_Q&oh=00_AfWlZ1YP8rrFE2PIT76WqOucw0XJXysmF_zzkFxCxTAlvQ&oe=68AE2151" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/485765194_1074526834711246_6247238746474029074_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_6ueFYSETr4Q7kNvwFvmzyK&_nc_oc=AdkePbu4__5koSc3kUXjc5kuTkLtGG2Al4wu1xLFugl7xgikf8UQsfZ0mMhXVTN0HO0&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=hd-gwH2Z_sQNIe11XLOAcA&oh=00_AfVPVQT298TPVjKQsmhU2pm8RQisLxpAELB16k4yKaf0Qg&oe=68AE3EAF" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/484350159_1070892225074707_3872225164362166370_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=vJYO_zceHBMQ7kNvwFnlkFM&_nc_oc=AdmkMlTCej-IlCor-Uwa1iHb3KKQfZKPilGMNezg_3YeVlG1HeH-U6qySOXsD86II3Q&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=m6rF5LbMpztfbjY0UDDShg&oh=00_AfXGqPIoyV3PGxCnf3HgUq3IRqitMt4YXgf4CFg8uVjhEQ&oe=68AE18D5" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/480734806_1067077005456229_2412362753939425066_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=yVzYCauCYaAQ7kNvwEQ1vpz&_nc_oc=Adm4QlxabsanL7TZd0NZgPiNsY5WgO-whyOrsL-HR3m6tVci6j-flpbi-PZGpKIatBU&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=8If3hTlAFKQ2TTaT-hk1aw&oh=00_AfXmxKzgOS-CUrGvggoqoKRXWZje3Y79qCvXM2zgXEHioQ&oe=68AE391A" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/484386677_1067075038789759_4883331722129516340_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=mpLg4FV744oQ7kNvwHS16NF&_nc_oc=Adl-U1qF01mtR5uu1CeRZBSz3qCNdWaWeesi_B04B5psptYZXqlmIiKyXyWMT37lFiY&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=UuacCtItsn5wYboRqBnt3w&oh=00_AfXmQWYVA45unAqvToNbs0hgPjOCw5lRa78S8K9C1zYDuA&oe=68AE1D07" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/483952235_1067079272122669_8045188231589494395_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=111&ccb=1-7&_nc_sid=833d8c&_nc_ohc=1vTP7k0Yud8Q7kNvwGCK7pI&_nc_oc=Adln8a2fdhmEsStT2KfRztpdUHuZn9Ja5uzJapQAstCn6RtjZYTg-rYyqHFL61CdCeE&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=teWbMP59hMNpEs6ARMyiGg&oh=00_AfXQCIfxpoMRLb36Cgf-B1hCmeBqONZfjrCf_hbfHve57g&oe=68AE2E59" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/484142535_1066945542136042_5459151267039743135_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=w3Uf08rJD8AQ7kNvwF__VJE&_nc_oc=Adn1u0_rdWFuPEw-yFgzAhzTpIhbrd5dPsYo1R3kSfEWJ4hIMvgpwNXVqJ7WAyO72xg&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=BHGI5RBD2YtTnM1Mc1TNvA&oh=00_AfXVooB2uoZvyIdM5XB2sl1z-GAGLz98tgmhcbgLLCBs7g&oe=68AE30BF" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/483872422_1066753628821900_77424078689494145_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=buxHtKE0kpIQ7kNvwGJwk8w&_nc_oc=Adm3LdXNXCXjoE6wMA6YYwjjP2u6yysnkzfT-eaTUWPhkb2dJrvLpPINM7aO1gHMT_A&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=qlG3WQIl5QN9-71QiPFE4g&oh=00_AfUPRHlyuFLLc-4xSTz__W_Cr3Bte2v8Wwxc_0batyC0Tw&oe=68AE3231" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/482809968_1065939278903335_2333430496211328909_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=4kzmPzVzVSgQ7kNvwEpvMzg&_nc_oc=AdmXQto_HQcH5rOzo0dYfvjSjvjA39VhHdWR9fONG542Pcr0nQYILRC7wFgDyqop-2w&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=_Zd23F1Bp-yaPtbpdChyLA&oh=00_AfWRRLZ84hXTE8l1AGC3QvgdKHAM-e9BI8cd9ABacToL6Q&oe=68AE1F5E" class="rounded w-full h-auto">
                             </div>
                         </div>
-                        <div class="metric-card">
+                        <div class="scrollable-section">
                             <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
                             <div class="grid grid-cols-3 gap-2">
-                                <blockquote 
-  class="instagram-media" 
-  data-instgrm-permalink="https://www.instagram.com/p/DJG4LZlqhhJ/?utm_source=ig_embed&amp;utm_campaign=loading" 
-  data-instgrm-version="14" 
-  style="background:#FFF; border:0; margin:1px; max-width:540px; width:100%;"
->
-  <a href="https://www.instagram.com/p/DJG4LZlqhhJ/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank">
-    View this post on Instagram
-  </a>
-</blockquote>
-
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DCyCp9RShSo/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; margin: 1px auto; padding:0; border:0;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote 
-    class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DAh7r75RQHl/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; width:100%; margin:auto;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DAh7r75RQHl/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:calc(100% - 2px);">
-    <a href="https://www.instagram.com/p/DAh7r75RQHl/?utm_source=ig_embed&amp;utm_campaign=loading" target="_blank">
-        View this post on Instagram
-    </a>
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DAY_2DgTifx/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:100%;">
-    <a href="https://www.instagram.com/p/DAY_2DgTifx/?utm_source=ig_embed&amp;utm_campaign=loading" 
-       target="_blank">View this post on Instagram</a>
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote 
-  class="instagram-media" 
-  data-instgrm-permalink="https://www.instagram.com/p/DAYg3RGSK72/?utm_source=ig_embed&utm_campaign=loading" 
-  data-instgrm-version="14" 
-  style="max-width:540px; min-width:326px; margin:auto;">
-</blockquote>
-
-<script async src="https://www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/p/DAYHDL7vhlI/" data-instgrm-version="14">
-  <a href="https://www.instagram.com/p/DAYHDL7vhlI/" target="_blank">
-    View this post on Instagram
-  </a>
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/DAV9cngSHgx/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; min-width:326px; padding:0; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/C9q9_MzIgD1/?utm_source=ig_embed&amp;utm_campaign=loading" 
-    data-instgrm-version="14" 
-    style="max-width:540px; min-width:326px; width:100%; margin:1px auto; border-radius:6px; overflow:hidden; background:#fff;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-<blockquote class="instagram-media" 
-    data-instgrm-permalink="https://www.instagram.com/p/C9p5ejIh5BG/" 
-    data-instgrm-version="14" 
-    style="background:#FFF; border:0; margin:1px; max-width:540px; width:99.375%;">
-</blockquote>
-<script async src="//www.instagram.com/embed.js"></script>
-
+                                <img src="https://placehold.co/150x150/f3e8ff/7e22ce?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/f3e8ff/7e22ce?text=Post" class="rounded w-full h-auto">
+                                <img src="https://placehold.co/150x150/f3e8ff/7e22ce?text=Post" class="rounded w-full h-auto">
                             </div>
                         </div>
                     </div>
@@ -878,39 +650,28 @@
                                 </ul>
                             </div>
                         </div>
-                        <div>
-                            <h3 class="metric-title mb-3">Marketing & Campaign Highlights</h3>
-                            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Occasion Post </h4>
-                                    <img src="https://placehold.co/400x300/dbeafe/1d4ed8?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Event Banner</h4>
-                                    <img src="https://placehold.co/400x300/dbeafe/1d4ed8?text=Exhibition+Gate" class="rounded w-full h-auto">
-                                </div>
-                                <div class="metric-card">
-                                    <h4 class="font-bold text-lg mb-2">Reel Preview</h4>
-                                    <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                                </div>
-                            </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
+                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=Happy+Durga+Puja" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
                         </div>
-                        <div class="metric-card">
-                            <h4 class="font-bold text-lg mb-2">Facebook Posts</h4>
-                            <div class="grid grid-cols-3 gap-2">
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
+                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=Exhibition+Gate" class="rounded w-full h-auto">
+                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
+                        </div>
+                         <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
+                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="scrollable-section">
+                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
+                            <div class="grid grid-cols-2 gap-2">
                                 <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.82787-15/532335284_18395871865139358_5130397498415781782_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VZ8gPLvBsAAQ7kNvwExi7o7&_nc_oc=AdmVXsUvXaZ935r2jNhRco2egvAS8xjOF8DE-yBsI3qe0Bqvb6bIeQLNHHY1lP28vks&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=oyYUxsOfYdA31Pp4F0NdIA&oh=00_AfXHOdQQ9XLn-BkOBxXAkVcPWCgdRexSPYcrDRvFKm92RQ&oe=68AE2F0A" class="rounded w-full h-auto">
                                 <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.82787-15/531514383_18395839978139358_651578880817160872_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rsS5jXwF77MQ7kNvwH_43_7&_nc_oc=Adm_XwX0gu5rQNG30KSyLS4c0veJX8sxP3IE18s-kBxMyADwBHue0wmL2DcyalLJ5Z8&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=h0n0cSoceQdkmN0Nd8QI9Q&oh=00_AfWhwcbQQtzDo-KS2GM2mhkwwuxoLjM4xoB8XAP6A6Zneg&oe=68AE1F4B" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/533447340_1184590447035629_4763678894535503771_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=QQZBBj8q7SsQ7kNvwGYxFH9&_nc_oc=Adl0YOgrO95yQJy0wXTG0qXHtz62pEuJWHQBJlU_0zbRQMDcFx7l8csRjIk-1xJ5lhE&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=kAFbzVa3RM8iDmhrZE0wVw&oh=00_AfVWQjZiKA8mccP3J-OayIJQw7h_lM-0aMjX57h4S97I3A&oe=68AE29F7" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.82787-15/529819444_18395176111139358_4634553255624104251_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=127cfc&_nc_ohc=6G-b-1k14aoQ7kNvwEIiEoq&_nc_oc=AdkkffGpO5eGctISZLn8M_Q3zi8KUnONkK43njc3BrRNMzeIoZXxjga6afUan2B4lpE&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=q995C7AYJJKJRQ9_Lg1aJw&oh=00_AfX7f5pXL2qY7sBMGajBFJC3A0znJBJm_STHchSH7L-eAg&oe=68AE2EC8" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t51.82787-15/525998770_18394590547139358_468938992378940190_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=iEyBnNWGVwwQ7kNvwFMu5ji&_nc_oc=AdmueFKGBuPsYjGGvqBiFIGgtlqI2fm-YDzxe983-9aZAn8ab2_LMXDu3X3RugMZnKs&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=ttl120l9N33cWBtGZn2NKw&oh=00_AfUKsn9M1l1_EaA9S3xgwvtCErZJvwaA6pgFcwAdYMHPNw&oe=68AE3398" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t51.82787-15/526773099_18394386322139358_506983208690342089_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=lH7VbHTZmY4Q7kNvwFMGGFn&_nc_oc=AdmWytOCkKIrSGrhGZRFTxdjkSIQ0OFOVj_V3yJoVczamYLUObry-3xXmOhmaAZxQa4&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=gV8hJIdTVPB6auVy3Uy8Xg&oh=00_AfXgx0zgs0c_vCrSCftKndNsCl8zkeAV1SoTkzKaVamJXQ&oe=68AE2E84" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.82787-15/521289993_18392963746139358_7648891923060004377_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=9nzemktkeFUQ7kNvwGvW-m_&_nc_oc=Adl_EJAid71s7Vjf5wAZARKKnVowO5ZWZluFvJzx0ztDxuCLf-N-YA0G5YcCAZD004A&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=WWiZWw24033LpjTjIE9R0Q&oh=00_AfVkCunUROGdgTCHAePE9sv8DSrzucKNJqSR3GW2iH_wlQ&oe=68AE1DF3" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t51.82787-15/522662831_18392963728139358_4254208147539242785_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VzFJbLUKC1MQ7kNvwF2oGg9&_nc_oc=AdlBPXcjjA0nLKFrfAR1fbm-YhuQbVX7TUC9euN5utS2TM6HnG474GXPhqKm_hMt52Q&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=o4mY8tQ5PKWc4OEBCbpvfw&oh=00_AfVBmgXiKUq08UjiBgibbe8qK9kPQQ-EWMMVA-OuaKnVfA&oe=68AE2F12" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t51.82787-15/521525985_18392963719139358_4251187489969770335_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_EQAFJljzmUQ7kNvwF2HKDg&_nc_oc=AdnXbHG67OrYGiF55p1McVpm2lsioUyFP28Q6TueCjOREq1McQkB6Ea1uG7l8716mYs&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=7JF5Eo_MYwC4zsyaPU3Yiw&oh=00_AfUW0MVrMkvwnq6RUP8H5Q0v5G81n2Uk6Wg8hkLzWhoD9g&oe=68AE4802" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t51.82787-15/516936719_18391228516139358_5138089028843699578_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eXIkUkkIfHYQ7kNvwGsHAw-&_nc_oc=AdnIuazzoqQPI3HI1weZPJmUioZyZlJxFebIl_NledXyV3d21JsiLX3mkLQqCJHwk-0&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=qs_ZaVQgMkJ40Bu9O1t-Aw&oh=00_AfUPULfNO8DOOJae7QFEaL7bmXJxnVCYt6tl_KZqXc6uGA&oe=68AE2A25" class="rounded w-full h-auto">
                             </div>
                         </div>
-                        <div class="metric-card">
+                        <div class="scrollable-section">
                             <h4 class="font-bold text-lg mb-2">Instagram Grid (786K Followers)</h4>
                             <div class="grid grid-cols-3 gap-2">
                                 <img src="https://placehold.co/150x150/dbeafe/1d4ed8?text=Post" class="rounded w-full h-auto">
@@ -940,6 +701,39 @@
         }
 
         window.onload = function() {
+            new Chart(document.getElementById('socialFollowersChart').getContext('2d'), {
+                type: 'bar',
+                data: {
+                    labels: ['Borosil', 'Prestige', 'Agaro', 'Cello', 'Wonderchef', 'Havells'],
+                    datasets: [
+                        {
+                            label: 'Instagram Followers',
+                            data: [230000, 76800, 28200, 63300, 616000, 203000],
+                            backgroundColor: '#c026d3',
+                        },
+                        {
+                            label: 'Facebook Followers',
+                            data: [786000, 755000, 10000, 87000, 1100000, 580000],
+                            backgroundColor: '#2563eb',
+                        }
+                    ]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    if (value >= 1000000) return (value / 1000000) + 'M';
+                                    if (value >= 1000) return (value / 1000) + 'K';
+                                    return value;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
             new Chart(document.getElementById('ttkChart').getContext('2d'), {
                 type: 'bar',
                 data: {
@@ -1009,17 +803,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-

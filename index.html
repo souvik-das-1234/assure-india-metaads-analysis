@@ -1,15 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-gray-900">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Next-Gen Meta Ads Intelligence Hub</title>
-    <!-- Tailwind CSS for styling -->
+    <title>The Ultimate Meta Ads Intelligence Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js for interactive charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
-    <!-- Custom Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,18 +13,26 @@
         body {
             font-family: 'Inter', sans-serif;
             color: #E5E7EB;
-            background-color: #030712; /* Even darker, richer background */
+            background-color: #030712;
+            background-image: radial-gradient(circle at top left, rgba(59, 130, 246, 0.15), transparent 30%),
+                              radial-gradient(circle at bottom right, rgba(139, 92, 246, 0.15), transparent 40%);
         }
+        .main-content > section { display: none; }
+        .main-content > section.active { display: block; }
         .section-card {
-             background: radial-gradient(circle at 100% 100%, #111827 0%, #030712 90%);
-             border: 1px solid #1f2937;
-             border-radius: 0.75rem;
-             padding: 1.5rem;
-             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+            background: rgba(17, 24, 39, 0.6);
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 1.5rem 2rem;
         }
         .kpi-card {
-            background-color: #111827;
-            border: 1px solid #374151;
+            background: rgba(17, 24, 39, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
@@ -36,326 +40,351 @@
         .kpi-card:before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
-            transform: scale(0);
-            transition: transform 0.5s ease;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: all 0.5s;
         }
-        .kpi-card:hover:before {
-            transform: scale(2);
-        }
+        .kpi-card:hover:before { left: 100%; }
         .kpi-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1);
-            border-color: #4f5b72;
+            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
         }
-        .slider-thumb {
-            -webkit-appearance: none; appearance: none; width: 20px; height: 20px;
-            background: #2563EB; cursor: pointer; border-radius: 50%; border: 3px solid #F9FAFB;
-        }
-        input[type='range']::-webkit-slider-thumb { @apply slider-thumb; }
-        input[type='range']::-moz-range-thumb { @apply slider-thumb; }
-        .table-container { max-height: 400px; overflow-y: auto; }
+        .table-container { max-height: 500px; overflow-y: auto; }
         .table-container::-webkit-scrollbar { width: 8px; }
         .table-container::-webkit-scrollbar-track { background: transparent; }
-        .table-container::-webkit-scrollbar-thumb { background-color: #374151; border-radius: 10px; }
-        .chart-container { min-height: 350px; }
+        .table-container::-webkit-scrollbar-thumb { background-color: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+        
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            color: #9CA3AF;
+            transition: all 0.2s ease;
+        }
+        .nav-link:hover { background-color: rgba(255, 255, 255, 0.05); color: #fff; }
+        .nav-link.active { background-color: #3B82F6; color: #fff; }
+
+        .fade-in { animation: fadeIn 0.5s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Custom slider styles */
+        input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 8px; background: rgba(255, 255, 255, 0.1); border-radius: 5px; outline: none; }
+        input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 24px; height: 24px; background: #3B82F6; cursor: pointer; border-radius: 50%; border: 4px solid #fff; }
+        input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; background: #3B82F6; cursor: pointer; border-radius: 50%; border: 4px solid #fff; }
     </style>
 </head>
 <body class="p-4 sm:p-6 lg:p-8">
-    <div class="max-w-screen-2xl mx-auto space-y-8">
-        <!-- Header -->
-        <header>
-            <h1 class="text-4xl font-black text-white tracking-tighter">Next-Gen Ads Intelligence Hub</h1>
-            <p class="text-gray-400 mt-2 text-lg">Harnessing data to drive predictive insights and strategic growth.</p>
-        </header>
-
-        <!-- Section 1: Interactive Filters -->
-        <div class="section-card">
-            <h2 class="text-xl font-bold text-white">Dashboard Controls</h2>
-             <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To slice and dice data across different timeframes and campaign goals, enabling focused analysis on specific market conditions or strategic initiatives.</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                 <div>
-                    <label for="date-slider" class="block mb-2 text-sm font-medium text-gray-300">Historical Date Range</label>
-                    <div class="flex items-center space-x-4"><input id="date-slider" type="range" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"><span id="slider-date-label" class="text-sm font-semibold text-blue-300 bg-gray-700 px-3 py-1 rounded-md w-32 text-center"></span></div>
+    <div class="flex space-x-8">
+        <!-- Sidebar Navigation -->
+        <aside class="w-64 flex-shrink-0">
+            <div class="sticky top-6">
+                <div class="mb-8">
+                    <h1 class="text-3xl font-black text-white tracking-tighter">Intelligence Hub</h1>
+                    <p class="text-sm text-gray-400">Assure-You Meta Ads</p>
                 </div>
-                <div>
-                    <label for="objective-filter" class="block mb-2 text-sm font-medium text-gray-300">Campaign Objective</label>
-                    <select id="objective-filter" class="w-full bg-gray-800 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"><option value="All">All Objectives</option></select>
-                </div>
+                <nav id="sidebar-nav" class="space-y-2">
+                    <a href="#overview" class="nav-link active">
+                        <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
+                        Overview
+                    </a>
+                    <a href="#campaigns" class="nav-link">
+                         <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                        Campaigns
+                    </a>
+                    <a href="#funnel" class="nav-link">
+                        <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>
+                        Funnel Analysis
+                    </a>
+                    <a href="#forecasting" class="nav-link">
+                         <svg class="w-5 h-5 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>
+                        Forecasting
+                    </a>
+                </nav>
             </div>
-        </div>
-
-        <!-- Section 2: Core Performance Overview -->
-        <div class="section-card">
-             <h2 class="text-xl font-bold text-white">Core Performance Snapshot</h2>
-             <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To get a high-level, immediate understanding of the overall health and profitability of ad accounts for the selected period. These are the headline numbers for executive reporting.</p>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div id="kpi-spent" class="kpi-card p-5 rounded-lg"></div>
-                <div id="kpi-roas" class="kpi-card p-5 rounded-lg"></div>
-                <div id="kpi-cpa" class="kpi-card p-5 rounded-lg"></div>
-                <div id="kpi-purchases" class="kpi-card p-5 rounded-lg"></div>
-            </div>
-        </div>
+        </aside>
         
-        <!-- Section 3: Trend Analysis (Decoupled Charts) -->
-        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
-            <div class="section-card">
-                <h2 class="text-xl font-bold text-white">Revenue & Spend Over Time</h2>
-                <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To track growth and budget pacing. This chart shows if revenue is scaling with investment, highlighting profitability trends.</p>
-                <div class="chart-container"><canvas id="revenueTrendChart"></canvas></div>
-            </div>
-            <div class="section-card">
-                <h2 class="text-xl font-bold text-white">Efficiency Metrics Over Time</h2>
-                <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To monitor the cost-effectiveness of campaigns. Are we acquiring customers at a sustainable cost (CPA) and is the return (ROAS) healthy?</p>
-                <div class="chart-container"><canvas id="efficiencyTrendChart"></canvas></div>
-            </div>
-        </div>
-
-        <!-- Section 4: Advanced Analytics -->
-        <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
-            <div class="xl:col-span-3 section-card">
-                 <h2 class="text-xl font-bold text-white">Conversion Funnel Analysis</h2>
-                 <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To identify bottlenecks in the customer journey. A significant drop-off between stages (e.g., 'Add to Cart' to 'Purchase') indicates friction that needs to be addressed.</p>
-                 <div class="chart-container"><canvas id="funnelChart"></canvas></div>
-            </div>
-            <div class="xl:col-span-2 section-card">
-                <h2 class="text-xl font-bold text-white">Ad Fatigue Analysis (Frequency vs. CPA)</h2>
-                <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To prevent over-exposing ads to the same audience, which leads to higher costs. This chart helps determine the optimal ad frequency before performance degrades.</p>
-                <div class="chart-container"><canvas id="fatigueChart"></canvas></div>
-            </div>
-        </div>
-
-        <!-- Section 5: Prediction & Forecasting Engine -->
-        <div class="section-card">
-            <h2 class="text-xl font-bold text-white">Prediction & Forecasting Engine</h2>
-            <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To move from reactive to proactive management. This engine allows you to simulate the potential impact of budget and efficiency changes, helping to set realistic future targets and optimize spending.</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 items-end">
-                <div>
-                    <label class="block text-sm font-medium text-gray-300">Spend Increase (%)</label>
-                    <div class="flex items-center space-x-3 mt-2"><input id="spend-increase-slider" type="range" min="0" max="100" value="10" class="w-full h-2 bg-gray-700 rounded-lg"><span id="spend-increase-label" class="text-sm font-semibold text-green-300 bg-gray-700 px-3 py-1 rounded-md">10%</span></div>
+        <!-- Main Content -->
+        <main class="flex-1 main-content">
+            <!-- PAGE 1: STRATEGIC OVERVIEW -->
+            <section id="overview" class="active space-y-8">
+                <h2 class="text-3xl font-bold text-white tracking-tight">Strategic Overview</h2>
+                <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-6">
+                    <div id="kpi-spent" class="kpi-card"></div> <div id="kpi-roas" class="kpi-card"></div> <div id="kpi-purchases" class="kpi-card"></div>
+                    <div id="kpi-cpa" class="kpi-card"></div> <div id="kpi-impressions" class="kpi-card"></div> <div id="kpi-clicks" class="kpi-card"></div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-300">CPA Change (%)</label>
-                    <div class="flex items-center space-x-3 mt-2"><input id="cpa-change-slider" type="range" min="-50" max="50" value="0" class="w-full h-2 bg-gray-700 rounded-lg"><span id="cpa-change-label" class="text-sm font-semibold text-yellow-300 bg-gray-700 px-3 py-1 rounded-md">0%</span></div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="section-card">
+                        <h3 class="text-lg font-semibold text-white">Spend by Campaign Objective</h3>
+                        <div style="height:400px"><canvas id="objectiveSpendChart"></canvas></div>
+                    </div>
+                    <div class="section-card">
+                        <h3 class="text-lg font-semibold text-white">Profitability vs. Cost (Sales Campaigns)</h3>
+                        <div style="height:400px"><canvas id="profitabilityChart"></canvas></div>
+                    </div>
                 </div>
-                <div>
-                    <label class="block text-sm font-medium text-gray-300">CVR Change (%)</label>
-                    <div class="flex items-center space-x-3 mt-2"><input id="cvr-change-slider" type="range" min="-50" max="50" value="5" class="w-full h-2 bg-gray-700 rounded-lg"><span id="cvr-change-label" class="text-sm font-semibold text-sky-300 bg-gray-700 px-3 py-1 rounded-md">5%</span></div>
-                </div>
-                <div id="predicted-purchases" class="kpi-card p-4 rounded-lg text-center bg-blue-900/50 border-blue-700"></div>
-                <div id="predicted-roas" class="kpi-card p-4 rounded-lg text-center bg-blue-900/50 border-blue-700"></div>
-            </div>
-        </div>
+            </section>
 
-        <!-- Section 6: Detailed Campaign Breakdown -->
-        <div class="section-card">
-            <h2 class="text-xl font-bold text-white">Detailed Campaign Breakdown</h2>
-            <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To perform granular analysis at the campaign level. This table helps identify top and bottom-performing campaigns, allowing for tactical optimization and budget reallocation.</p>
-            <div class="table-container"><table class="min-w-full divide-y divide-gray-700"><thead class="bg-gray-800 sticky top-0"><tr><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Campaign Name</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Amount Spent</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">ROAS</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Purchases</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">CPA</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">CTR (%)</th></tr></thead><tbody id="campaign-table-body" class="bg-gray-800 divide-y divide-gray-700"></tbody></table></div>
-        </div>
+            <!-- PAGE 2: CAMPAIGN DEEP DIVE -->
+            <section id="campaigns" class="space-y-8">
+                <h2 class="text-3xl font-bold text-white tracking-tight">Campaign Deep Dive</h2>
+                <div class="section-card">
+                    <label for="campaign-spotlight-filter" class="text-lg font-semibold text-white">Select Campaign to Spotlight:</label>
+                    <select id="campaign-spotlight-filter" class="mt-2 w-full bg-gray-800 border-gray-600 text-white rounded-lg p-3"></select>
+                </div>
+                 <div id="spotlight-content" class="space-y-8">
+                    <!-- Dynamic content will be injected here -->
+                </div>
+            </section>
+
+            <!-- PAGE 3: FUNNEL ANALYSIS -->
+            <section id="funnel" class="space-y-8">
+                <h2 class="text-3xl font-bold text-white tracking-tight">Funnel Analysis (Sales Campaigns)</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-2 section-card">
+                        <h3 class="text-lg font-semibold text-white">Full Conversion Funnel</h3>
+                        <div class="chart-container"><canvas id="funnelChart"></canvas></div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="kpi-card p-5">
+                            <p class="text-sm font-medium text-gray-400">Click to Add-to-Cart Rate</p>
+                            <p id="funnel-rate-1" class="mt-1 text-4xl font-extrabold text-white"></p>
+                        </div>
+                        <div class="kpi-card p-5">
+                            <p class="text-sm font-medium text-gray-400">ATC to Checkout Rate</p>
+                            <p id="funnel-rate-2" class="mt-1 text-4xl font-extrabold text-white"></p>
+                        </div>
+                        <div class="kpi-card p-5">
+                            <p class="text-sm font-medium text-gray-400">Checkout to Purchase Rate</p>
+                            <p id="funnel-rate-3" class="mt-1 text-4xl font-extrabold text-white"></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PAGE 4: PREDICTIVE FORECASTING -->
+            <section id="forecasting" class="space-y-8">
+                <h2 class="text-3xl font-bold text-white tracking-tight">Predictive Forecasting</h2>
+                <div class="section-card">
+                    <h3 class="text-xl font-bold text-white">Interactive Budget Forecaster</h3>
+                     <p class="text-gray-400 text-sm mt-1 mb-6">Use historical averages to predict outcomes based on different budget levels.</p>
+                    <div class="mb-8">
+                        <label for="budget-slider" class="block mb-2 text-lg font-medium text-white">Scenario Budget: <span id="slider-value" class="font-bold text-blue-400"></span></label>
+                        <input type="range" id="budget-slider" name="budget-slider" min="0" max="200000">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="col-span-1 space-y-6">
+                             <div class="kpi-card p-5">
+                                <p class="text-sm font-medium text-gray-400">Projected Revenue</p>
+                                <p id="projected-revenue" class="mt-1 text-4xl font-extrabold text-white"></p>
+                             </div>
+                             <div class="kpi-card p-5">
+                                <p class="text-sm font-medium text-gray-400">Projected Purchases</p>
+                                <p id="projected-purchases" class="mt-1 text-4xl font-extrabold text-white"></p>
+                             </div>
+                        </div>
+                        <div class="md:col-span-2 section-card border-gray-700">
+                             <h3 class="text-lg font-semibold text-white">Current vs. Projected Performance</h3>
+                             <div class="chart-container !min-h-[300px]"><canvas id="projectionChart"></canvas></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
     </div>
 
 <script>
-    // --- MOCK DATA GENERATION ---
-    const mockData = [];
-    const today = new Date('2025-10-17');
-    const startDate = new Date(today);
-    startDate.setDate(today.getDate() - 90);
-    const campaignTemplates = [
-        { name: 'Q4 Evergreen - Sales', objective: 'Sales' }, { name: 'Diwali Special Offer', objective: 'Sales' },
-        { name: 'Lead Gen - Ebook Download', objective: 'Leads' }, { name: 'Brand Awareness - Fall Collection', objective: 'Awareness' },
+    // --- REAL DATA FROM CSV ---
+    const rawData = [
+        {"Campaign name":"Post: \"This Diwali, let the feast cook itself! 🍛✨\"","Result indicator":"actions:post_engagement",Impressions:36504,"Amount spent (INR)":1159.77,"Link clicks":119,"CTR (all)":0.33,"CPC (all) (INR)":9.75,Purchases:null,"Purchase conversion value":null,"ROAS for purchases (return on ad spend)":null,"Cost per purchase (INR)":null, "Adds to cart": 0, "Checkouts initiated": 0},
+        {"Campaign name":"Instagram post: This Diwali, let the feast cook...","Result indicator":"actions:visit_instagram_profile",Impressions:81598,"Amount spent (INR)":1197.8,"Link clicks":36,"CTR (all)":0.04,"CPC (all) (INR)":33.27,Purchases:null,"Purchase conversion value":null,"ROAS for purchases (return on ad spend)":null,"Cost per purchase (INR)":null, "Adds to cart": 0, "Checkouts initiated": 0},
+        {"Campaign name":"Advantage+ shopping campaign","Result indicator":"purchases",Impressions:4222,"Amount spent (INR)":23840.9,"Link clicks":47,"CTR (all)":1.11,"CPC (all) (INR)":507.25,Purchases:47,"Purchase conversion value":124500,"ROAS for purchases (return on ad spend)":5.22,"Cost per purchase (INR)":507.25, "Adds to cart": 13, "Checkouts initiated": 4},
+        {"Campaign name":"Sales Campaign - Diwali Offer","Result indicator":"purchases",Impressions:12500,"Amount spent (INR)":38292.5,"Link clicks":350,"CTR (all)":2.8,"CPC (all) (INR)":109.41,Purchases:85,"Purchase conversion value":340000,"ROAS for purchases (return on ad spend)":8.88,"Cost per purchase (INR)":450.50, "Adds to cart": 40, "Checkouts initiated": 25}
     ];
-    for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
-        const dateStr = d.toISOString().split('T')[0];
-        for (let i = 0; i < campaignTemplates.length; i++) {
-            const template = campaignTemplates[i];
-            const amountSpent = 50 + Math.random() * 150 * (Math.sin(d.getTime() / (1000 * 60 * 60 * 24 * 7)) + 1.5);
-            const impressions = Math.floor(amountSpent * (200 + Math.random() * 100));
-            const clicks = Math.floor(impressions * (0.01 + Math.random() * 0.02));
-            const frequency = 1.2 + Math.random() * (4 + Math.sin(d.getDate()) * 3); // Frequency now varies more for fatigue chart
-            const purchases = template.objective === 'Sales' ? Math.floor(clicks * (0.04 - (frequency * 0.005))) : 0; // CPA worsens with frequency
-            const leads = template.objective === 'Leads' ? Math.floor(clicks * (0.1 + Math.random() * 0.05)) : 0;
-            const purchaseRevenue = purchases * (80 + Math.random() * 40);
-            mockData.push({
-                "Date": dateStr, "Campaign ID": 1000 + i, "Campaign Name": template.name, "Ad Set ID": 2000+i, "Ad Set Name": `Audience ${i+1}`, "Ad ID": 3000+i, "Ad Name": `Video Ad ${i+1}`, "Campaign Objective": template.objective, "Status": "Active", "Amount Spent": amountSpent, "Impressions": impressions, "Reach": Math.floor(impressions / frequency), "Frequency": frequency, "CPM": (amountSpent / impressions) * 1000, "Link Clicks": clicks, "Outbound Clicks": Math.floor(clicks * 0.9), "CTR (Link Click-Through)": (clicks / impressions) * 100, "CPC (Cost Per Click)": clicks > 0 ? amountSpent / clicks : 0, "Adds to Cart": Math.floor(clicks * 0.3), "Initiates Checkout": Math.floor(clicks * 0.15), "Purchases": purchases, "Leads": leads, "Conversion Rate (%)": purchases > 0 && clicks > 0 ? (purchases / clicks) * 100 : 0, "CPA (Cost Per Purchase)": purchases > 0 ? amountSpent / purchases : 0, "Purchase Revenue": purchaseRevenue, "ROAS (Return On Ad Spend)": amountSpent > 0 ? purchaseRevenue / amountSpent : 0,
-            });
-        }
-    }
+
+    // Data Transformation Layer
+    const appData = rawData.map(d => {
+        let objective = 'Other';
+        const indicator = d['Result indicator'] || '';
+        if (indicator.includes('purchase')) objective = 'Sales';
+        else if (indicator.includes('engagement') || indicator.includes('profile')) objective = 'Engagement';
+        return {
+            "Campaign Name": d["Campaign name"], "Campaign Objective": objective, "Amount Spent": d["Amount spent (INR)"] || 0, "Impressions": d.Impressions || 0,
+            "Link Clicks": d["Link clicks"] || 0, "Purchases": d.Purchases || 0, "CPA": d["Cost per purchase (INR)"] || 0, "Purchase Revenue": d["Purchase conversion value"] || 0,
+            "ROAS": d["ROAS for purchases (return on ad spend)"] || 0, "CTR": d["CTR (all)"] || 0, "CPC": d["CPC (all) (INR)"] || 0,
+            "Adds to Cart": d["Adds to cart"] || 0, "Checkouts Initiated": d["Checkouts initiated"] || 0
+        };
+    });
     
-    // --- UTILITY FUNCTIONS & CHART DEFAULTS ---
-    const formatCurrency = (v) => isNaN(v) ? '$0.00' : v.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    const formatNumber = (v) => isNaN(v) ? '0' : v.toLocaleString('en-US', { maximumFractionDigits: 0 });
-    const formatROAS = (v) => isNaN(v) ? '0.00x' : `${v.toFixed(2)}x`;
-    Chart.defaults.color = '#9CA3AF';
-    Chart.defaults.borderColor = '#374151';
+    // --- UTILITY & FORMATTING ---
+    const formatCurrency = (v) => v.toLocaleString('en-IN', { style: 'currency', currency: 'INR', minimumFractionDigits: 0, maximumFractionDigits: 0 });
+    const formatNumber = (v) => v.toLocaleString('en-IN', { maximumFractionDigits: 0 });
+    const formatROAS = (v) => v ? `${v.toFixed(2)}x` : 'N/A';
+    const formatPercent = (v) => `${(v * 100).toFixed(1)}%`;
+    const chartColorPalette = ['#3B82F6', '#8B5CF6', '#10B981', '#F97316', '#EC4899', '#FBBF24'];
 
-    // --- GLOBAL CHART VARIABLES ---
-    let revenueTrendChart, efficiencyTrendChart, funnelChart, fatigueChart;
+    // --- CHART DEFAULTS ---
+    Chart.defaults.color = '#9CA3AF'; Chart.defaults.borderColor = 'rgba(255,255,255,0.1)'; Chart.defaults.plugins.legend.position = 'bottom';
+    Chart.defaults.plugins.legend.labels.usePointStyle = true; Chart.defaults.plugins.tooltip.backgroundColor = 'rgba(17, 24, 39, 0.8)';
+    Chart.defaults.plugins.tooltip.titleFont = { size: 14, weight: 'bold' }; Chart.defaults.plugins.tooltip.bodyFont = { size: 12 };
+    Chart.defaults.plugins.tooltip.padding = 10; Chart.defaults.plugins.tooltip.cornerRadius = 4;
+    
+    // --- GLOBAL VARIABLES ---
+    let objectiveSpendChart, profitabilityChart, funnelChart, projectionChart;
+    let avgROAS = 0, avgCPA = 0, currentTotalSpent = 0, currentTotalPurchases = 0, currentTotalRevenue = 0;
 
-    // --- DOM ELEMENT REFERENCES ---
-    const dateSlider = document.getElementById('date-slider');
-    const sliderDateLabel = document.getElementById('slider-date-label');
-    const objectiveFilter = document.getElementById('objective-filter');
-    const spendIncreaseSlider = document.getElementById('spend-increase-slider');
-    const spendIncreaseLabel = document.getElementById('spend-increase-label');
-    const cpaChangeSlider = document.getElementById('cpa-change-slider');
-    const cpaChangeLabel = document.getElementById('cpa-change-label');
-    const cvrChangeSlider = document.getElementById('cvr-change-slider');
-    const cvrChangeLabel = document.getElementById('cvr-change-label');
+    // --- DOM REFERENCES ---
+    const navLinks = document.querySelectorAll('#sidebar-nav .nav-link');
+    const sections = document.querySelectorAll('.main-content > section');
+    const campaignSpotlightFilter = document.getElementById('campaign-spotlight-filter');
+    const budgetSlider = document.getElementById('budget-slider');
     
     // --- CORE LOGIC ---
-    function getFilteredData() {
-        const uniqueDates = [...new Set(mockData.map(d => d.Date))].sort();
-        const selectedDate = uniqueDates[dateSlider.value];
-        const selectedObjective = objectiveFilter.value;
-        return mockData.filter(d => (d.Date <= selectedDate) && (selectedObjective === 'All' || d['Campaign Objective'] === selectedObjective));
-    }
-    
     function updateDashboard() {
-        const data = getFilteredData();
-        updateKpiCards(data);
-        updateRevenueTrendChart(data);
-        updateEfficiencyTrendChart(data);
-        updateFunnelChart(data);
-        updateFatigueChart(data);
-        updateDetailedTable(data);
-        updatePredictionEngine(data);
+        updateKpiCards(appData);
+        updateObjectiveSpendChart(appData);
+        updateProfitabilityChart(appData.filter(d => d['Campaign Objective'] === 'Sales'));
+        updateFunnelAnalysis(appData.filter(d => d['Campaign Objective'] === 'Sales'));
+        updateCampaignSpotlight(campaignSpotlightFilter.value);
+    }
+
+    function updateForecasting() {
+        const scenarioBudget = parseFloat(budgetSlider.value);
+        document.getElementById('slider-value').textContent = formatCurrency(scenarioBudget);
+        const projectedRevenue = scenarioBudget * avgROAS;
+        const projectedPurchases = scenarioBudget / avgCPA;
+        document.getElementById('projected-revenue').textContent = formatCurrency(projectedRevenue);
+        document.getElementById('projected-purchases').textContent = formatNumber(projectedPurchases);
+
+        projectionChart.data.datasets[0].data = [currentTotalRevenue, projectedRevenue];
+        projectionChart.data.datasets[1].data = [currentTotalPurchases, projectedPurchases];
+        projectionChart.update();
     }
     
     // --- UPDATE FUNCTIONS ---
+    function createKpiHtml(title, value, iconSvg) {
+        return `<div class="flex items-center p-5"><div class="p-3 bg-gray-800/50 rounded-lg mr-4">${iconSvg}</div><div><p class="text-sm font-medium text-gray-400 truncate">${title}</p><p class="mt-1 text-2xl font-extrabold text-white">${value}</p></div></div>`;
+    }
+    
     function updateKpiCards(data) {
-        const totals = data.reduce((acc, curr) => {
-            acc.spent += curr['Amount Spent']; acc.revenue += curr['Purchase Revenue']; acc.purchases += curr['Purchases']; return acc;
-        }, { spent: 0, revenue: 0, purchases: 0 });
+        const totals = data.reduce((acc, c) => { acc.spent += c['Amount Spent']; acc.revenue += c['Purchase Revenue']; acc.purchases += c.Purchases; acc.impressions += c.Impressions; acc.clicks += c['Link Clicks']; return acc; }, { spent: 0, revenue: 0, purchases: 0, impressions: 0, clicks: 0 });
         const roas = totals.spent > 0 ? totals.revenue / totals.spent : 0;
         const cpa = totals.purchases > 0 ? totals.spent / totals.purchases : 0;
-        const createKpiHtml = (title, value) => `<p class="text-base font-medium text-gray-400 truncate">${title}</p><p class="mt-1 text-4xl font-extrabold text-white">${value}</p>`;
-        document.getElementById('kpi-spent').innerHTML = createKpiHtml('Total Spend', formatCurrency(totals.spent));
-        document.getElementById('kpi-roas').innerHTML = createKpiHtml('Overall ROAS', formatROAS(roas));
-        document.getElementById('kpi-cpa').innerHTML = createKpiHtml('Average CPA', formatCurrency(cpa));
-        document.getElementById('kpi-purchases').innerHTML = createKpiHtml('Total Purchases', formatNumber(totals.purchases));
+        const icons = {
+            spent: `<svg class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"/></svg>`,
+            roas: `<svg class="h-6 w-6 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>`,
+            purchases: `<svg class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4z"/></svg>`,
+            cpa: `<svg class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 9a2 2 0 100-4 2 2 0 000 4v2a2 2 0 002 2h2a2 2 0 100-4h-2V9z"/><path d="M4 5a2 2 0 100 4h11a2 2 0 100-4H4z"/></svg>`,
+            impressions: `<svg class="h-6 w-6 text-indigo-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>`,
+            clicks: `<svg class="h-6 w-6 text-pink-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"/></svg>`
+        };
+        document.getElementById('kpi-spent').innerHTML = createKpiHtml('Total Spend', formatCurrency(totals.spent), icons.spent);
+        document.getElementById('kpi-roas').innerHTML = createKpiHtml('Overall ROAS', formatROAS(roas), icons.roas);
+        document.getElementById('kpi-purchases').innerHTML = createKpiHtml('Total Purchases', formatNumber(totals.purchases), icons.purchases);
+        document.getElementById('kpi-cpa').innerHTML = createKpiHtml('Average CPA', formatCurrency(cpa), icons.cpa);
+        document.getElementById('kpi-impressions').innerHTML = createKpiHtml('Impressions', formatNumber(totals.impressions), icons.impressions);
+        document.getElementById('kpi-clicks').innerHTML = createKpiHtml('Link Clicks', formatNumber(totals.clicks), icons.clicks);
+    }
+    
+    function updateObjectiveSpendChart(data) {
+        const spendByObjective = data.reduce((acc, c) => { acc[c['Campaign Objective']] = (acc[c['Campaign Objective']] || 0) + c['Amount Spent']; return acc; }, {});
+        const chartData = { labels: Object.keys(spendByObjective), datasets: [{ data: Object.values(spendByObjective), backgroundColor: chartColorPalette, borderColor: '#0d111c', borderWidth: 5 }] };
+        if (objectiveSpendChart) { objectiveSpendChart.data = chartData; objectiveSpendChart.update(); } 
+        else { objectiveSpendChart = new Chart(document.getElementById('objectiveSpendChart'), { type: 'doughnut', data: chartData, options: { responsive: true, maintainAspectRatio: false } }); }
+    }
+    
+    function updateProfitabilityChart(salesData) {
+        const labels = salesData.map(d => d['Campaign Name'].split(':')[0].trim());
+        const chartData = { labels, datasets: [ { label: 'ROAS', data: salesData.map(d => d.ROAS), backgroundColor: chartColorPalette[0], yAxisID: 'y' }, { label: 'CPA', data: salesData.map(d => d.CPA), backgroundColor: chartColorPalette[1], yAxisID: 'y1' } ] };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, scales: { x: { grid: { display: false } }, y: { type: 'linear', position: 'left', title: { display: true, text: 'ROAS' } }, y1: { type: 'linear', position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'CPA' } } }};
+        if(profitabilityChart) { profitabilityChart.data = chartData; profitabilityChart.update(); }
+        else { profitabilityChart = new Chart(document.getElementById('profitabilityChart'), { type: 'bar', data: chartData, options: chartOptions }); }
     }
 
-    function updateRevenueTrendChart(data) {
-        const byDate = data.reduce((acc, curr) => {
-            if (!acc[curr.Date]) acc[curr.Date] = { spent: 0, revenue: 0 };
-            acc[curr.Date].spent += curr['Amount Spent']; acc[curr.Date].revenue += curr['Purchase Revenue']; return acc;
-        }, {});
-        const labels = Object.keys(byDate).sort();
-        const revenueData = labels.map(date => byDate[date].revenue);
-        const spentData = labels.map(date => byDate[date].spent);
-        const chartData = {
-            labels: labels, datasets: [
-                { type: 'bar', label: 'Spend', data: spentData, backgroundColor: 'rgba(59, 130, 246, 0.5)', borderColor: 'rgba(59, 130, 246, 0.8)' },
-                { type: 'line', label: 'Revenue', data: revenueData, borderColor: '#10B981', backgroundColor: '#10B98120', tension: 0.4, fill: true, yAxisID: 'y1' }
-            ]
-        };
-        const chartOptions = { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { x: { type: 'time', time: { unit: 'week' } }, y: { stacked: true, title: { display: true, text: 'Spend ($)'} }, y1: { position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Revenue ($)'} } }, plugins: { legend: { position: 'top' } } };
-        if (revenueTrendChart) { revenueTrendChart.data = chartData; revenueTrendChart.update(); } 
-        else { revenueTrendChart = new Chart(document.getElementById('revenueTrendChart'), { data: chartData, options: chartOptions }); }
-    }
+    function updateFunnelAnalysis(salesData) {
+        const totals = salesData.reduce((acc, c) => { acc.impressions += c.Impressions; acc.clicks += c['Link Clicks']; acc.atc += c['Adds to Cart']; acc.checkouts += c['Checkouts Initiated']; acc.purchases += c.Purchases; return acc; }, {impressions: 0, clicks: 0, atc: 0, checkouts: 0, purchases: 0});
+        const funnelValues = [totals.impressions, totals.clicks, totals.atc, totals.checkouts, totals.purchases];
+        
+        // Update rates
+        document.getElementById('funnel-rate-1').textContent = formatPercent(totals.clicks > 0 ? totals.atc / totals.clicks : 0);
+        document.getElementById('funnel-rate-2').textContent = formatPercent(totals.atc > 0 ? totals.checkouts / totals.atc : 0);
+        document.getElementById('funnel-rate-3').textContent = formatPercent(totals.checkouts > 0 ? totals.purchases / totals.checkouts : 0);
 
-    function updateEfficiencyTrendChart(data) {
-        const byDate = data.reduce((acc, curr) => {
-            if (!acc[curr.Date]) acc[curr.Date] = { spent: 0, revenue: 0, purchases: 0 };
-            acc[curr.Date].spent += curr['Amount Spent']; acc[curr.Date].revenue += curr['Purchase Revenue']; acc[curr.Date].purchases += curr['Purchases']; return acc;
-        }, {});
-        const labels = Object.keys(byDate).sort();
-        const roasData = labels.map(d => byDate[d].spent > 0 ? byDate[d].revenue / byDate[d].spent : 0);
-        const cpaData = labels.map(d => byDate[d].purchases > 0 ? byDate[d].spent / byDate[d].purchases : 0);
-        const chartData = {
-            labels, datasets: [
-                { label: 'ROAS', data: roasData, borderColor: '#2563EB', tension: 0.4, yAxisID: 'y' },
-                { label: 'CPA ($)', data: cpaData, borderColor: '#FBBF24', tension: 0.4, yAxisID: 'y1' }
-            ]
+        // Update chart
+        const chartData = { labels: ['Impressions', 'Link Clicks', 'Adds to Cart', 'Checkouts', 'Purchases'], datasets: [{ label: 'Users', data: funnelValues, backgroundColor: chartColorPalette }] };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, indexAxis: 'y',
+            plugins: { legend: { display: false }, tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${formatNumber(ctx.raw)}`, afterLabel: (ctx) => { if (ctx.dataIndex > 0) { const prev = ctx.chart.data.datasets[0].data[ctx.dataIndex - 1]; return `Drop-off: ${ (100 - (ctx.raw / prev * 100)).toFixed(1) }%`; } } } } },
+            scales: { x: { type: 'logarithmic', title: { display: true, text: 'Count (Logarithmic Scale)' } } }
         };
-        const chartOptions = { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { x: { type: 'time', time: { unit: 'week' } }, y: { position: 'left', title: { display: true, text: 'ROAS' } }, y1: { position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'CPA ($)' } } }, plugins: { legend: { position: 'top' } } };
-        if (efficiencyTrendChart) { efficiencyTrendChart.data = chartData; efficiencyTrendChart.update(); } 
-        else { efficiencyTrendChart = new Chart(document.getElementById('efficiencyTrendChart'), { type: 'line', data: chartData, options: chartOptions }); }
-    }
-
-    function updateFunnelChart(data) {
-        const totals = data.reduce((acc, curr) => {
-            acc.impressions += curr.Impressions; acc.clicks += curr['Link Clicks']; acc.atc += curr['Adds to Cart']; acc.checkout += curr['Initiates Checkout']; acc.purchases += curr.Purchases; return acc;
-        }, { impressions: 0, clicks: 0, atc: 0, checkout: 0, purchases: 0 });
-        const chartData = {
-            labels: ['Impressions', 'Link Clicks', 'Adds to Cart', 'Checkouts', 'Purchases'],
-            datasets: [{
-                label: 'Conversion Funnel', data: [totals.impressions, totals.clicks, totals.atc, totals.checkout, totals.purchases],
-                backgroundColor: ['#1E3A8A', '#1E40AF', '#1D4ED8', '#2563EB', '#3B82F6']
-            }]
-        };
-        const chartOptions = { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { type: 'logarithmic' } }, plugins: { legend: { display: false }, title: { display: true, text: 'Customer Journey (Logarithmic Scale)' } } };
-        if (funnelChart) { funnelChart.data = chartData; funnelChart.update(); } 
+        if (funnelChart) { funnelChart.data = chartData; funnelChart.update(); }
         else { funnelChart = new Chart(document.getElementById('funnelChart'), { type: 'bar', data: chartData, options: chartOptions }); }
     }
 
-    function updateFatigueChart(data) {
-        const salesData = data.filter(d => d['Campaign Objective'] === 'Sales' && d.Purchases > 0);
-        const scatterData = salesData.map(d => ({ x: d.Frequency, y: d['CPA (Cost Per Purchase)'] }));
-        const chartData = { datasets: [{ label: 'CPA by Frequency', data: scatterData, backgroundColor: 'rgba(236, 72, 153, 0.6)' }] };
-        const chartOptions = { responsive: true, maintainAspectRatio: false, scales: { x: { type: 'linear', position: 'bottom', title: { display: true, text: 'Ad Frequency' } }, y: { title: { display: true, text: 'CPA ($)' } } }, plugins: { legend: { display: false } } };
-        if (fatigueChart) { fatigueChart.data = chartData; fatigueChart.update(); } 
-        else { fatigueChart = new Chart(document.getElementById('fatigueChart'), { type: 'scatter', data: chartData, options: chartOptions }); }
+    function updateCampaignSpotlight(campaignName) {
+        const data = appData.find(d => d["Campaign Name"] === campaignName);
+        if (!data) return;
+
+        const content = `
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div class="kpi-card p-5"><p class="text-sm text-gray-400">Spend</p><p class="text-2xl font-bold">${formatCurrency(data['Amount Spent'])}</p></div>
+                <div class="kpi-card p-5"><p class="text-sm text-gray-400">ROAS</p><p class="text-2xl font-bold">${formatROAS(data.ROAS)}</p></div>
+                <div class="kpi-card p-5"><p class="text-sm text-gray-400">Purchases</p><p class="text-2xl font-bold">${formatNumber(data.Purchases)}</p></div>
+                <div class="kpi-card p-5"><p class="text-sm text-gray-400">CTR</p><p class="text-2xl font-bold">${data.CTR.toFixed(2)}%</p></div>
+            </div>
+            <div class="section-card">
+                 <h3 class="text-lg font-semibold text-white">Campaign Funnel</h3>
+                 <div class="chart-container"><canvas id="spotlightFunnelChart"></canvas></div>
+            </div>
+        `;
+        document.getElementById('spotlight-content').innerHTML = content;
+        
+        // Render spotlight funnel chart
+        const funnelValues = [data.Impressions, data['Link Clicks'], data['Adds to Cart'], data['Checkouts Initiated'], data.Purchases];
+        new Chart(document.getElementById('spotlightFunnelChart'), { type: 'bar', 
+            data: { labels: ['Impressions', 'Link Clicks', 'Adds to Cart', 'Checkouts', 'Purchases'], datasets: [{ label: 'Users', data: funnelValues, backgroundColor: chartColorPalette[4] }] },
+            options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, scales: { x: { type: 'logarithmic' } } }
+        });
     }
 
-    function updateDetailedTable(data) {
-        const selectedDate = [...new Set(mockData.map(d => d.Date))].sort()[dateSlider.value];
-        const latestData = data.filter(d => d.Date === selectedDate);
-        const summary = latestData.reduce((acc, curr) => {
-            const name = curr['Campaign Name'];
-            if (!acc[name]) acc[name] = { spent: 0, revenue: 0, purchases: 0, clicks: 0, impressions: 0 };
-            acc[name].spent += curr['Amount Spent']; acc[name].revenue += curr['Purchase Revenue']; acc[name].purchases += curr['Purchases']; acc[name].clicks += curr['Link Clicks']; acc[name].impressions += curr['Impressions']; return acc;
-        }, {});
-        const tableBody = document.getElementById('campaign-table-body');
-        tableBody.innerHTML = Object.entries(summary).map(([name, totals]) => {
-            const roas = totals.spent > 0 ? totals.revenue / totals.spent : 0;
-            const cpa = totals.purchases > 0 ? totals.spent / totals.purchases : 0;
-            const ctr = totals.impressions > 0 ? (totals.clicks / totals.impressions) * 100 : 0;
-            return `<tr class="hover:bg-gray-700/50"><td class="px-6 py-4 text-sm font-medium text-white">${name}</td><td class="px-6 py-4 text-sm text-gray-300">${formatCurrency(totals.spent)}</td><td class="px-6 py-4 text-sm text-gray-300">${formatROAS(roas)}</td><td class="px-6 py-4 text-sm text-gray-300">${formatNumber(totals.purchases)}</td><td class="px-6 py-4 text-sm text-gray-300">${formatCurrency(cpa)}</td><td class="px-6 py-4 text-sm text-gray-300">${ctr.toFixed(2)}%</td></tr>`;
-        }).join('');
-    }
-
-    function updatePredictionEngine(data) {
-        if (data.length === 0) return;
-        const salesData = data.filter(d => d['Campaign Objective'] === 'Sales');
-        const totals = salesData.reduce((acc, curr) => {
-            acc.spent += curr['Amount Spent']; acc.purchases += curr['Purchases']; acc.revenue += curr['Purchase Revenue']; acc.clicks += curr['Link Clicks']; return acc;
-        }, { spent: 0, purchases: 0, revenue: 0, clicks: 0 });
-        const histCpa = totals.purchases > 0 ? totals.spent / totals.purchases : 0;
-        const histCvr = totals.clicks > 0 ? totals.purchases / totals.clicks : 0;
-        const aov = totals.purchases > 0 ? totals.revenue / totals.purchases : 50;
-        const spendIncr = parseFloat(spendIncreaseSlider.value) / 100, cpaChg = parseFloat(cpaChangeSlider.value) / 100, cvrChg = parseFloat(cvrChangeSlider.value) / 100;
-        const futureSpend = totals.spent * (1 + spendIncr);
-        const futureCvr = histCvr * (1 + cvrChg);
-        const futureCpa = histCpa * (1 + cpaChg);
-        const predictedPurchases = futureCpa > 0 ? futureSpend / futureCpa : 0; // Simple model, could be improved
-        const predictedRevenue = predictedPurchases * aov;
-        const predictedRoas = futureSpend > 0 ? predictedRevenue / futureSpend : 0;
-        const createKpiHtml = (title, value) => `<p class="text-sm font-medium text-gray-300">${title}</p><p class="mt-1 text-2xl font-bold text-white">${value}</p>`;
-        document.getElementById('predicted-purchases').innerHTML = createKpiHtml('Predicted Purchases', formatNumber(predictedPurchases));
-        document.getElementById('predicted-roas').innerHTML = createKpiHtml('Predicted ROAS', formatROAS(predictedRoas));
-    }
 
     // --- INITIALIZATION ---
     function init() {
-        const objectives = [...new Set(mockData.map(d => d['Campaign Objective']))];
-        objectives.forEach(obj => { objectiveFilter.innerHTML += `<option value="${obj}">${obj}</option>`; });
-        const uniqueDates = [...new Set(mockData.map(d => d.Date))].sort();
-        dateSlider.max = uniqueDates.length - 1; dateSlider.value = uniqueDates.length - 1;
-        const updateDateLabel = () => { sliderDateLabel.textContent = new Date(uniqueDates[dateSlider.value]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); };
-        dateSlider.addEventListener('input', () => { updateDateLabel(); updateDashboard(); });
-        objectiveFilter.addEventListener('change', updateDashboard);
-        [spendIncreaseSlider, cpaChangeSlider, cvrChangeSlider].forEach(slider => slider.addEventListener('input', () => updatePredictionEngine(getFilteredData())));
-        spendIncreaseSlider.addEventListener('input', (e) => spendIncreaseLabel.textContent = `${e.target.value}%`);
-        cpaChangeSlider.addEventListener('input', (e) => cpaChangeLabel.textContent = `${e.target.value}%`);
-        cvrChangeSlider.addEventListener('input', (e) => cvrChangeLabel.textContent = `${e.target.value}%`);
-        updateDateLabel();
+        // Navigation
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navLinks.forEach(l => l.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                link.classList.add('active');
+                document.querySelector(link.getAttribute('href')).classList.add('active');
+            });
+        });
+
+        // Populate campaign spotlight filter
+        appData.forEach(d => { campaignSpotlightFilter.innerHTML += `<option value="${d['Campaign Name']}">${d['Campaign Name']}</option>`; });
+        campaignSpotlightFilter.addEventListener('change', (e) => updateCampaignSpotlight(e.target.value));
+        
+        // Forecasting setup
+        const salesCampaigns = appData.filter(d => d['Campaign Objective'] === 'Sales');
+        currentTotalSpent = salesCampaigns.reduce((acc, c) => acc + c['Amount Spent'], 0);
+        currentTotalRevenue = salesCampaigns.reduce((acc, c) => acc + c['Purchase Revenue'], 0);
+        currentTotalPurchases = salesCampaigns.reduce((acc, c) => acc + c.Purchases, 0);
+        avgROAS = currentTotalSpent > 0 ? currentTotalRevenue / currentTotalSpent : 0;
+        avgCPA = currentTotalPurchases > 0 ? currentTotalSpent / currentTotalPurchases : 0;
+        
+        projectionChart = new Chart(document.getElementById('projectionChart'), { type: 'bar',
+            data: { labels: ['Revenue', 'Purchases'], datasets: [ { label: 'Current', data: [0,0], backgroundColor: chartColorPalette[2] }, { label: 'Projected', data: [0,0], backgroundColor: chartColorPalette[3] } ] },
+            options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true } } }
+        });
+
+        budgetSlider.value = currentTotalSpent;
+        budgetSlider.addEventListener('input', updateForecasting);
+
+        // Initial Load
         updateDashboard();
+        updateForecasting();
     }
     document.addEventListener('DOMContentLoaded', init);
 </script>

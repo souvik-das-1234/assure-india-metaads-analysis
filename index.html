@@ -1,830 +1,364 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="bg-gray-900">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Competitor Analysis Presentation for Assure India</title>
+    <title>Next-Gen Meta Ads Intelligence Hub</title>
+    <!-- Tailwind CSS for styling -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Chart.js for interactive charts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script async src="//www.instagram.com/embed.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <!-- Custom Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5;
+            color: #E5E7EB;
+            background-color: #030712; /* Even darker, richer background */
         }
-        .slide {
-            background-color: white;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-            margin-bottom: 2rem;
-            padding: 2.5rem;
+        .section-card {
+             background: radial-gradient(circle at 100% 100%, #111827 0%, #030712 90%);
+             border: 1px solid #1f2937;
+             border-radius: 0.75rem;
+             padding: 1.5rem;
+             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
         }
-        .slide-title {
-            font-size: 2.25rem;
-            font-weight: 800;
-            color: #1e293b;
-            border-bottom: 3px solid;
-            padding-bottom: 0.5rem;
-            margin-bottom: 1.5rem;
+        .kpi-card {
+            background-color: #111827;
+            border: 1px solid #374151;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .metric-card {
-            background-color: #f8fafc;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            border: 1px solid #e2e8f0;
+        .kpi-card:before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease;
         }
-        .metric-title {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: #334155;
+        .kpi-card:hover:before {
+            transform: scale(2);
         }
-        .metric-description {
-            font-size: 0.875rem;
-            color: #64748b;
+        .kpi-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 10px 10px -5px rgba(0,0,0,0.1);
+            border-color: #4f5b72;
         }
-        .tab-button {
-            padding: 0.75rem 1.5rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease-in-out;
-            border: 2px solid transparent;
+        .slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 20px; height: 20px;
+            background: #2563EB; cursor: pointer; border-radius: 50%; border: 3px solid #F9FAFB;
         }
-        .tab-button.active {
-            background-color: #1e293b;
-            color: white;
-            border-color: #1e293b;
-        }
-        .tab-button:not(.active) {
-            background-color: white;
-            color: #334155;
-            border-color: #e2e8f0;
-        }
-        .tab-content {
-            display: none;
-        }
-        .tab-content.active {
-            display: block;
-        }
-        .deep-dive-container {
-            height: 500px; /* Increased height */
-            overflow-y: auto;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-        }
-        .scrollable-section {
-            height: 300px;
-            overflow-y: auto;
-            border: 1px solid #e2e8f0;
-            border-radius: 0.5rem;
-            padding: 1rem;
-        }
+        input[type='range']::-webkit-slider-thumb { @apply slider-thumb; }
+        input[type='range']::-moz-range-thumb { @apply slider-thumb; }
+        .table-container { max-height: 400px; overflow-y: auto; }
+        .table-container::-webkit-scrollbar { width: 8px; }
+        .table-container::-webkit-scrollbar-track { background: transparent; }
+        .table-container::-webkit-scrollbar-thumb { background-color: #374151; border-radius: 10px; }
+        .chart-container { min-height: 350px; }
     </style>
 </head>
-<body class="text-slate-800">
+<body class="p-4 sm:p-6 lg:p-8">
+    <div class="max-w-screen-2xl mx-auto space-y-8">
+        <!-- Header -->
+        <header>
+            <h1 class="text-4xl font-black text-white tracking-tighter">Next-Gen Ads Intelligence Hub</h1>
+            <p class="text-gray-400 mt-2 text-lg">Harnessing data to drive predictive insights and strategic growth.</p>
+        </header>
 
-    <div class="container mx-auto p-4 sm:p-6 lg:p-8">
-        <!-- Tab Navigation -->
-        <div class="mb-6 flex flex-wrap items-center gap-4">
-            <button class="tab-button active" onclick="openTab(event, 'Summary')">Summary</button>
-            <button class="tab-button" onclick="openTab(event, 'TTK')">TTK Prestige</button>
-            <button class="tab-button" onclick="openTab(event, 'Cello')">Cello World</button>
-            <button class="tab-button" onclick="openTab(event, 'Wonderchef')">Wonderchef</button>
-            <button class="tab-button" onclick="openTab(event, 'AGARO')">AGARO</button>
-            <button class="tab-button" onclick="openTab(event, 'Borosil')">Borosil</button>
-        </div>
-
-        <!-- Tab Content -->
-        <div id="Summary" class="tab-content active">
-            <!-- Slide 1: Title -->
-            <div class="slide text-center">
-                <h1 class="text-5xl font-extrabold text-slate-900">Competitor Analysis & Strategic Plan</h1>
-                <p class="text-xl text-red-600 font-semibold mt-2">Prepared for Assure India | August 2025</p>
-            </div>
-
-            <!-- New Social Media Landscape Slide -->
-            <div class="slide">
-                <h2 class="slide-title border-blue-500">Social Media Landscape at a Glance</h2>
-                <div class="metric-card mb-6">
-                    <canvas id="socialFollowersChart"></canvas>
+        <!-- Section 1: Interactive Filters -->
+        <div class="section-card">
+            <h2 class="text-xl font-bold text-white">Dashboard Controls</h2>
+             <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To slice and dice data across different timeframes and campaign goals, enabling focused analysis on specific market conditions or strategic initiatives.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                 <div>
+                    <label for="date-slider" class="block mb-2 text-sm font-medium text-gray-300">Historical Date Range</label>
+                    <div class="flex items-center space-x-4"><input id="date-slider" type="range" class="w-full h-2 bg-gray-700 rounded-lg appearance-none cursor-pointer"><span id="slider-date-label" class="text-sm font-semibold text-blue-300 bg-gray-700 px-3 py-1 rounded-md w-32 text-center"></span></div>
                 </div>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-                    <div class="metric-card">
-                        <p class="font-bold text-lg">Wonderchef</p>
-                        <p class="text-slate-500 text-sm">Daily Posts</p>
-                    </div>
-                     <div class="metric-card">
-                        <p class="font-bold text-lg">Havells</p>
-                        <p class="text-slate-500 text-sm">Daily Posts</p>
-                    </div>
-                    <div class="metric-card">
-                        <p class="font-bold text-lg">Borosil</p>
-                        <p class="text-slate-500 text-sm">3-4 Posts/Week</p>
-                    </div>
-                     <div class="metric-card">
-                        <p class="font-bold text-lg">Prestige</p>
-                        <p class="text-slate-500 text-sm">3-4 Posts/Week</p>
-                    </div>
-                </div>
-                <div class="mt-6 p-4 bg-blue-50 border-l-4 border-blue-500 text-blue-800">
-                    <h4 class="font-bold">Key Takeaway:</h4>
-                    <p>Wonderchef has a massive lead on Facebook (1.1M followers), while also having a strong Instagram presence (616K followers). This indicates a highly engaged community. Brands like AGARO and KitchenAid are significantly less active, presenting an opportunity for Assure to capture attention with a consistent posting schedule.</p>
-                </div>
-            </div>
-
-            <!-- Slide 2: Competitor Strengths -->
-            <div class="slide">
-                <h2 class="slide-title border-green-500">Top 3 Competitor Strengths</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">🏆</span>
-                            <h3 class="metric-title">Digital Dominance (TTK Prestige)</h3>
-                        </div>
-                        <p class="metric-description">With over <span class="font-bold">1 million monthly organic visitors</span> and <span class="font-bold">83.5K keywords</span>, TTK Prestige has built an almost unassailable SEO moat, driving massive brand awareness and trust.</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">💰</span>
-                            <h3 class="metric-title">Market & Financial Power (Cello World)</h3>
-                        </div>
-                        <p class="metric-description">A staggering <span class="font-bold">₹12,146 Crore market cap</span> and a vast distribution network of <span class="font-bold">145,000+ retailers</span> give Cello World immense scale and market control.</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">⭐</span>
-                            <h3 class="metric-title">Unique Business Model (Wonderchef)</h3>
-                        </div>
-                        <p class="metric-description">Their network of <span class="font-bold">82,000+ "Ladypreneur" direct sellers</span> creates a powerful, community-driven sales channel that is difficult for competitors to replicate.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3: Competitor Weaknesses -->
-            <div class="slide">
-                <h2 class="slide-title border-yellow-500">Top 3 Weaknesses & Market Gaps</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">🚫</span>
-                            <h3 class="metric-title">The Paid Search Vacuum</h3>
-                        </div>
-                        <p class="metric-description">A critical, universal weakness: <span class="font-bold">ZERO major competitors are investing in paid search (PPC)</span>. This is an uncontested channel, wide open for a first-mover.</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">📉</span>
-                            <h3 class="metric-title">Poor User Experience</h3>
-                        </div>
-                        <p class="metric-description">Key competitors have alarmingly high website bounce rates (<span class="font-bold">Borosil at 94%</span>, <span class="font-bold">AGARO at 78%</span>). This signals deep user dissatisfaction with their sites, a major vulnerability.</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">🎯</span>
-                            <h3 class="metric-title">Lack of Niche Focus</h3>
-                        </div>
-                        <p class="metric-description">Broad-portfolio giants often overlook high-volume, low-competition niches. Categories like <span class="font-bold">Air Fryers (156K searches/mo)</span> are underserved by the biggest players.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4: Opportunities for Assure -->
-            <div class="slide">
-                <h2 class="slide-title border-blue-500">Top 3 Opportunities for Assure India</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">🥇</span>
-                            <h3 class="metric-title">Become the First Mover in Paid Search</h3>
-                        </div>
-                        <p class="metric-description">Immediately launch targeted Google Ads campaigns. By being the only advertiser, Assure can capture high-intent buyers for a fraction of the typical cost and build brand recognition fast.</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">🎨</span>
-                            <h3 class="metric-title">Build a Superior Digital Experience</h3>
-                        </div>
-                        <p class="metric-description">Invest in a modern, fast, and user-friendly website. By creating a better experience than competitors, Assure can capture and convert the traffic that others are losing.</p>
-                    </div>
-                    <div class="metric-card">
-                        <div class="flex items-center mb-2">
-                            <span class="text-3xl mr-3">💡</span>
-                            <h3 class="metric-title">Dominate High-Potential Niches</h3>
-                        </div>
-                        <p class="metric-description">Focus initial content and SEO efforts on dominating underserved product categories. Become the go-to authority for products like Air Fryers and Dinner Sets before expanding.</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Slide 5: Keyword Insights -->
-            <div class="slide">
-                <h2 class="slide-title border-purple-500">Key Keyword Insights</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div>
-                        <h3 class="font-bold text-lg mb-3 text-slate-800">High Volume (10k-100k Searches)</h3>
-                        <ul class="space-y-2">
-                            <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">dinner set</li>
-                            <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">juicer</li>
-                            <li class="bg-red-50 p-2 rounded-md font-medium text-red-900">airfryer</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-3 text-slate-800">Mid Volume (1k-10k Searches)</h3>
-                        <ul class="space-y-2">
-                            <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">Assure products</li>
-                            <li class="bg-yellow-50 p-2 rounded-md font-medium text-yellow-900">best mixer</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-3 text-slate-800">Low Volume (10-100 Searches)</h3>
-                        <ul class="space-y-2">
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure mixer</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure non stick cookware</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure pressure cooker</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure roti maker</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure table fan</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure tower fan</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">grinders series</li>
-                            <li class="bg-blue-50 p-2 rounded-md font-medium text-blue-900">assure dinner set</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 6: Actionable Next Steps -->
-            <div class="slide">
-                <h2 class="slide-title border-red-500">Actionable Next Steps</h2>
-                <div class="space-y-6">
-                    <div>
-                        <h3 class="font-bold text-lg text-red-700">Phase 1: Foundation (0-3 Months)</h3>
-                        <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
-                            <li><span class="font-semibold">Launch Google Ads:</span> Immediately start PPC campaigns on brand and top 5 product keywords.</li>
-                            <li><span class="font-semibold">Build Backlinks:</span> Secure 30+ high-quality backlinks to begin building domain authority.</li>
-                            <li><span class="font-semibold">Redesign Website:</span> Overhaul key landing pages for a superior user experience.</li>
-                        </ul>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg text-red-700">Phase 2: Growth (3-6 Months)</h3>
-                        <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
-                            <li><span class="font-semibold">Scale PPC:</span> Expand campaigns to cover 20+ high-intent, non-brand keywords.</li>
-                            <li><span class="font-semibold">Engage Influencers:</span> Launch a micro-influencer program to build social proof.</li>
-                            <li><span class="font-semibold">Generate Reviews:</span> Implement a system to actively collect and display customer reviews.</li>
-                        </ul>
-                    </div>
-                     <div>
-                        <h3 class="font-bold text-lg text-red-700">Phase 3: Leadership (6+ Months)</h3>
-                        <ul class="mt-2 list-disc list-inside text-slate-700 space-y-1">
-                            <li><span class="font-semibold">Content Authority:</span> Build a comprehensive blog/resource hub to become a thought leader.</li>
-                            <li><span class="font-semibold">Strategic Partnerships:</span> Explore collaborations with complementary brands and retailers.</li>
-                            <li><span class="font-semibold">Remarketing:</span> Launch campaigns to re-engage past website visitors and build loyalty.</li>
-                        </ul>
-                    </div>
+                <div>
+                    <label for="objective-filter" class="block mb-2 text-sm font-medium text-gray-300">Campaign Objective</label>
+                    <select id="objective-filter" class="w-full bg-gray-800 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5"><option value="All">All Objectives</option></select>
                 </div>
             </div>
         </div>
 
-        <div id="TTK" class="tab-content">
-            <div class="slide">
-                <h2 class="slide-title border-green-500">Competitor Deep Dive: TTK Prestige</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Key Metrics</h3>
-                        <ul class="text-sm space-y-2">
-                            <li><span class="font-semibold">Authority Score:</span> 53</li>
-                            <li><span class="font-semibold">Organic Traffic:</span> 1M / month</li>
-                            <li><span class="font-semibold">Organic Keywords:</span> 83.5K</li>
-                            <li><span class="font-semibold">Market Cap:</span> ₹9,199 Cr</li>
-                        </ul>
-                    </div>
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                        <canvas id="ttkChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-8 deep-dive-container">
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Strengths</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Unmatched SEO and organic reach.</li>
-                                    <li>High brand trust and legacy.</li>
-                                    <li>Excellent website user engagement.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>No investment in paid search.</li>
-                                    <li>Potentially slower to innovate in new niches.</li>
-                                    <li>Premium pricing may alienate some segments.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
-                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
-                                    <li>Use PPC to appear above their organic listings.</li>
-                                    <li>Target emerging product niches they are slow to adopt.</li>
-                                    <li>Offer competitive pricing with a focus on value.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
-                            <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/532602186_1192548086248482_2651224585249923489_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=127cfc&_nc_ohc=fGGkopUWuskQ7kNvwHCrOuT&_nc_oc=AdnsLDHT2OInodFdaecAhavnTMSVJ1YqPSuOy-nHN2zyxLw1Ci0s5vriKR6mUaF0qA-uMaEy7xRc-c-g-71s2B_p&nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fixL3F8dUGRnpIuzxD-1TQ&oh=00_AfUMe0Qy_Iaw1amLKttGmB9DGfWBLSeyaESAgT-1BFUV8g&oe=68AD1698" class="rounded w-full h-auto">
-                            <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/517426868_1163417565828201_5543129247848137541_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=HWXbSwh3GcoQ7kNvwFfIZey&_nc_oc=AdnXs4Brb5E1z5yqCS77NrlH8lLTXrXeK0u1j_tQPdtW8yQfkKTYRTJ8hoNcj7uKXAI9ABngnRKEY1ehxHxddJ9z&nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=fTfEFKAz_CQzZXzTHzQQ2w&oh=00_AfUdT9hoxeiOuI0I3r6hdiag6BgMLOdwssV0pIxXGao6OA&oe=68ACE39D" class="rounded w-full h-auto mt-4">
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
-                            <img src="https://images.jdmagicbox.com/v2/comp/ernakulam/z9/0484px484.x484.130921150727.z8z9/catalogue/ttk-prestige-limited-kochi-mg-road-ernakulam-commercial-juicer-distributors-prestige-kpm88tqhk0.jpg" class="rounded w-full h-auto">
-                            <img src="https://tma-live.s3.ap-south-1.amazonaws.com/gallery/uploads/Sat%20Oct%2002%202021%2002%3A09%3A45%20GMT%2B0000%20%28Coordinated%20Universal%20Time%29.png" class="rounded w-full h-auto mt-4">
-                        </div>
-                         <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
-                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/8oi8Fp3u2VA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/484338548_1070382261792370_6889026222613503898_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=IIPxoeGJkyUQ7kNvwEdSo53&_nc_oc=AdlHu5s80T-KPhW3HTZW0z6_s673qyWxecHf1U_S671RmLnlU1oi0Oi8CjQHmweuS2k&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=VoSuBaYBePRQ4ubqu2hl-A&oh=00_AfX7c5lskGG_7jJ2qDhiLxN45LHlNctrX04GroL3pYdrTw&oe=68B4D37F" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/461340030_18087612433494715_1956358083937142668_n.jpg?stp=dst-jpg_tt6&_nc_cat=108&ccb=1-7&_nc_sid=127cfc&_nc_ohc=qZf5eSiSQeMQ7kNvwExYpLq&_nc_oc=Adm-zu52AODM5ALACjObW0t3ntsJK4H74q-1FWrXpG6QfGRliMjOCDqZCbGndbxAaoQ&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=AemkrKFItc2nKQMJ2xzePA&oh=00_AfUkP9SZK5VyMC2gy69Z_c6Mi275SRytLCjUWQKAMFKp4w&oe=68B4B2CA" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-2.fna.fbcdn.net/v/t39.30808-6/488485231_1084435690387027_8413526460704371734_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=dJtjJerXm_8Q7kNvwGEAWy9&_nc_oc=AdngziR9AglUvLSf9WzKNwGcGqzQUWzPtbMYyiAKe9MLddhZCmk_gPMehmWsXfqrCC4&_nc_zt=23&_nc_ht=scontent.fccu2-2.fna&_nc_gid=VRxZ5n-wEuLbrHgqNmZERA&oh=00_AfWa3K0mdC4m8N1O4hc-WfaUl6cch32UWr8QM3f5xsmpTQ&oe=68B4DF22" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/482830816_1065941888903074_1362661960701305285_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=WZKNPeMQvFoQ7kNvwH16l-e&_nc_oc=Adn7Ucxb4oZrZgr-F092T493iGmj-QLlps9bnkQUSO1NvrTbb1pyjiqG1t4hRcofj_4&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=CUhT24X8nSUjMj1Gt7HXCw&oh=00_AfVJi9tefptADFD7Y05xa2qXtLPBXsyGUq68vaQGysugmg&oe=68B4D476" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/482249361_1064551449042118_4082075488929385265_n.jpg?_nc_cat=108&ccb=1-7&_nc_sid=833d8c&_nc_ohc=sZpCa0_47IAQ7kNvwHER_h0&_nc_oc=Adlv-wgparw1BYYw6r7Rq7lDWraxMHFdLPSz7v0jH5sy0hgizdPd-G62UqlU79rJyV8&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=FxhaX7xnYTicc6n7-4kYcw&oh=00_AfWVyrNZRNU7tzmePqoZRXGZMzimSv6GBGaFj6obm3a2Hw&oe=68B4DC63" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/481959400_1060660936097836_8042763651346609952_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=833d8c&_nc_ohc=gHc552oVIr0Q7kNvwHNs7ho&_nc_oc=Adlit_FBnVg8JNJ16uESUiQdchTWcYIaXdzmBwpxNiQBfxO6YlowB5n-eTYGDvYkZd0&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=D7n_4tmlrbsi5K9n_XNw3g&oh=00_AfVzXciopKyqcKsX3iry5DyevVSTExfJZDfhaoCYIP0sBw&oe=68B4E8AE" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/484853880_9371813709604157_1992138366348487727_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=DZCaRzeSe0gQ7kNvwHZxlDJ&_nc_oc=AdnvSV49ZiRG5lwFcTAx6OzkBE21CWz-MpyP1FmGdH_StLEN50ZQsYZ_ODwpEGsk5qg&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=YQWHM2cMjubdXSUmUvOtSA&oh=00_AfWIGDlyfQMnN1Adcv8fkBV24bWzG9OhFkWKgcfbTTyq7Q&oe=68B4B197" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/485302356_9358148507637344_6789096351798195687_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=aXuIiOjJJLIQ7kNvwF_kuKM&_nc_oc=AdlE3xlSX3qsG5l7bsbJyhWd19lW-lifYJUuVRq2Wqmi-uVzZtaoIFo8fG8Cy0CYHtk&_nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=XYoPEaQMPNODYDzHCVjaCw&oh=00_AfVzIKQb1nmHE0PB5uU3-r7sjyT60s6Acfp50lASLdJIcg&oe=68B4C3C3" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-3.fna.fbcdn.net/v/t39.30808-6/484126658_9351532291632299_6874942863675532590_n.jpg?_nc_cat=100&ccb=1-7&_nc_sid=833d8c&_nc_ohc=AOvJXquLUDUQ7kNvwH9vJHX&_nc_oc=AdkpWqE_D4k0zwJzU36zw32p06F2hbc2MIhPqjNeplOKYsCE0slk5IpiwZEbHhA3eqg&_nc_zt=23&_nc_ht=scontent.fccu2-3.fna&_nc_gid=Ugv-a4aodi7qH_QYfd-hxA&oh=00_AfU5_qXFG42Fw--FenZ2XATF47Z20DINpvc4EB66sf3Osw&oe=68B4E833" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t39.30808-6/482081182_9301276933324502_6086833119840887566_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=833d8c&_nc_ohc=M3Tph3qN25YQ7kNvwFBHHQy&_nc_oc=AdnX46tTu8we8wAzwvykRhLCEg9N2T9hLxS5DpxjuetnDjYpw0O7AnhvSo0tq8cN16g&_nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=As2Y3pmBeElkPUNhdwJkaw&oh=00_AfVtMXGvXhPiJNWRVffMJ2f9FICE7-ChOX587rDNh-M0Ng&oe=68B4B4E5" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/dcfce7/166534?text=Post" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Section 2: Core Performance Overview -->
+        <div class="section-card">
+             <h2 class="text-xl font-bold text-white">Core Performance Snapshot</h2>
+             <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To get a high-level, immediate understanding of the overall health and profitability of ad accounts for the selected period. These are the headline numbers for executive reporting.</p>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div id="kpi-spent" class="kpi-card p-5 rounded-lg"></div>
+                <div id="kpi-roas" class="kpi-card p-5 rounded-lg"></div>
+                <div id="kpi-cpa" class="kpi-card p-5 rounded-lg"></div>
+                <div id="kpi-purchases" class="kpi-card p-5 rounded-lg"></div>
             </div>
         </div>
         
-        <div id="Cello" class="tab-content">
-             <div class="slide">
-                <h2 class="slide-title border-orange-500">Competitor Deep Dive: Cello World</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Key Metrics</h3>
-                        <ul class="text-sm space-y-2">
-                            <li><span class="font-semibold">Authority Score:</span> 41</li>
-                            <li><span class="font-semibold">Organic Traffic:</span> 137K / month</li>
-                            <li><span class="font-semibold">Organic Keywords:</span> 3.8K</li>
-                            <li><span class="font-semibold">Market Cap:</span> ₹12,146 Cr</li>
-                        </ul>
-                    </div>
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                        <canvas id="celloChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-8 deep-dive-container">
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Strengths</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Massive financial and distribution power.</li>
-                                    <li>Strong brand equity and consumer trust.</li>
-                                    <li>Diverse product portfolio covering many needs.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
-                                 <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Lower SEO focus compared to TTK Prestige.</li>
-                                    <li>Broad portfolio can lead to a lack of focus on specific niches.</li>
-                                    <li>No investment in paid search.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
-                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
-                                    <li>Dominate specific product niches they overlook.</li>
-                                    <li>Outperform them on SEO for targeted categories.</li>
-                                    <li>Use PPC to capture traffic for their product categories.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
-                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
-                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=Exhibition+Gate" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/ffedd5/c2410c?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
-                        </div>
-                         <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
-                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t51.82787-15/538175563_18474983890077889_432452340094110248_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=5tWconZ9KvoQ7kNvwH_-leH&_nc_oc=AdlBvik6fg3tUMZh67Wxe35HK0CCeAX1BYbYDCEdkSsDlq6l3AQ8tmXPIiTkd2-4pgWlFhNDsAWLdNvwUEx5XM_K&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=Ot3ouN05L4CgfkmmdggONg&oh=00_AfXbW-gOmSRQ_3tgTkvu90jslhlAvVZFpNZHrKTu-peXOg&oe=68B4A88E" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t51.82787-15/526599480_18471727189077889_6347163690697537762_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=eg6aaXrVVYMQ7kNvwEXg26w&_nc_oc=Adm1AVjClCJkOjBqIEmuPYqdlUDJkxCTZz8a4EUnjW4l_oLcS35ehqt7G1OblejLTRt4ebFO8C0OV3WqvAvWON7M&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=hAPydaO4lPxDB5khGJB9ew&oh=00_AfXpnsKRafB-KbCZvfzYyu7oFApi9bZ_5_tUWmwj-HRn6Q&oe=68B4DD2D" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/526043255_1088004980000517_2741631701593026176_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_aid=0&_nc_ohc=-iH4HpkzaTkQ7kNvwFT8Yhd&_nc_oc=AdlRJ0vvWhPyGDhTRcJU4h-Fw5q0i_ACBwr0E4kybIrEo5f9oza8bDJ4EmTgyHI1lUca0LNEwJpkyedPksvZc-QZ&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=5NrAoT5cWwvcuvb1dOeZqA&oh=00_AfUplEGMz-5EpTDRPdroJ-_mgUcAT0u5-_deqQXX0FcLLQ&oe=68B4E392" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-1.fna.fbcdn.net/v/t39.30808-6/524775009_1087180620082953_7183009549163484434_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=127cfc&_nc_ohc=-Xuab_DdbYcQ7kNvwFaI-IP&_nc_oc=AdmAXjmIRjpVey5KBp-5YrjAD0dbkdlARXP1BGtbtAuStdFARFT-t6m9d61m6gTlKOmeSXtI8FbDTMzYD6CxNiFm&_nc_zt=23&_nc_ht=scontent.fccu27-1.fna&_nc_gid=om1jM3MqizlQZPAu0ClXdw&oh=00_AfUMThKxCgxfAE7uF6sv_GPK3XlysnkTcnngqw14HkUvpw&oe=68B4DF01" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t51.82787-15/520286713_18469243564077889_4527934316239256230_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_ohc=anlW0-LmOuMQ7kNvwFRm6UX&_nc_oc=Adm-I1GTdcFqlociRXl1i-4eXVjgqlF7GHpewkE6BNopqREU2YKJRX5jnbRc4jSBN91gJl93bFWhWy0p2ATdccuC&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=brjtCswfARRHr9RpiRpHuA&oh=00_AfXGWsdzbGZNEeriD3lHJHKXUYFf3zPA1q3M1csRQF9MyQ&oe=68B4DEC7" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/505767915_18463967518077889_3079287931890201292_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=sz8rr7LLbToQ7kNvwEBk9Hj&_nc_oc=Adl5GrOIGfEUHrojmnzNZOim9f2zAndt212qnnp9L9EVJuyyKtztSfR-TTzr-2fKcFQoUQE_pvqqNDlWSaQ0jJd9&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=e-RNEtRByIKwwU6a1o2k5Q&oh=00_AfVNsorqennRSwHyLwgLeRxF8mrLs389fiGblIiXAbyLOA&oe=68B4E02C" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/501939686_18460772503077889_8117034853613804662_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rCeTJXm2G3QQ7kNvwGuAI3Q&_nc_oc=AdklLAo-XVtclzQBZtxN_ZlIg3Bq6dE9DcNJoFYJIEfCrkA55jMoAE4B92oCFLNNvBT8nJxNg0Fnbt1VSNr-hr9k&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=txIdsWR1vVbSqCgTHm1oBg&oh=00_AfVZn5aGR2NassfYhkKQ-q1uPwa4FySCyvi3Zaj94A0S0g&oe=68B4E3E6" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/502050670_18460610368077889_4563763900021066940_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=ABWisrxsybMQ7kNvwE6zgNZ&_nc_oc=AdlzYdksLqwe3RpPGT9ykH3da-XcLSBGkQzcWWvUmUH9d_2ZqWSfQOYviUeo3J5UVYEWtfPTr0owTqqic4riYih-&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=3FoJo62WpQmcPB8QVMQ2mg&oh=00_AfU9XEFsE1K1KD76axinxdhrL4t5ori5QjEhDcmlEr33xA&oe=68B4C679" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t51.75761-15/499494700_18459289069077889_4869170699940096_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=127cfc&_nc_ohc=KcLABzADMFIQ7kNvwEqCmtx&_nc_oc=Adldl0EVSxXOB4qNyHuJrQTV_IjcKzh5SSxJpwoPPZAPhA9NFkem2kDkWRdKwLpJg11t0PX0rr8SZ_Qij85nWSS8&_nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=2W00CIYGOtuS__0WuajIfQ&oh=00_AfWjPwFtRlD6Kn9vcxeKL5EbsPp3KP8Ns-B7FhxgnZr-eg&oe=68B4C5C6" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu27-2.fna.fbcdn.net/v/t51.75761-15/496547152_18457926280077889_2387206834628392653_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=127cfc&_nc_ohc=Sob6IyxCqREQ7kNvwFTqFE3&_nc_oc=AdmFTUP_HYs0hd-OrlQwxiWvrOfie9F0VhRW0WHWTP8ucsP-dzel1-ddbTIacsgyd3skpVsIHJLd3BCEBxF7lJY7&_nc_zt=23&_nc_ht=scontent.fccu27-2.fna&_nc_gid=P4GqjMVJYrdHAF9cbr_bAw&oh=00_AfWDZWBkZ19V36Sxh9SajgbyoZwoZ8A9Wr_R7PhtLrnvVA&oe=68B4DA87" class="rounded w-full h-auto
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://placehold.co/150x150/ffedd5/c2410c?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/ffedd5/c2410c?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/ffedd5/c2410c?text=Post" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Section 3: Trend Analysis (Decoupled Charts) -->
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
+            <div class="section-card">
+                <h2 class="text-xl font-bold text-white">Revenue & Spend Over Time</h2>
+                <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To track growth and budget pacing. This chart shows if revenue is scaling with investment, highlighting profitability trends.</p>
+                <div class="chart-container"><canvas id="revenueTrendChart"></canvas></div>
+            </div>
+            <div class="section-card">
+                <h2 class="text-xl font-bold text-white">Efficiency Metrics Over Time</h2>
+                <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To monitor the cost-effectiveness of campaigns. Are we acquiring customers at a sustainable cost (CPA) and is the return (ROAS) healthy?</p>
+                <div class="chart-container"><canvas id="efficiencyTrendChart"></canvas></div>
             </div>
         </div>
 
-        <div id="Wonderchef" class="tab-content">
-            <div class="slide">
-                <h2 class="slide-title border-pink-500">Competitor Deep Dive: Wonderchef</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Key Metrics</h3>
-                        <ul class="text-sm space-y-2">
-                            <li><span class="font-semibold">Authority Score:</span> 48</li>
-                            <li><span class="font-semibold">Organic Traffic:</span> 3.3K / month</li>
-                            <li><span class="font-semibold">Organic Keywords:</span> 25.7K</li>
-                            <li><span class="font-semibold">Annual Revenue:</span> ₹800 Cr</li>
-                        </ul>
-                    </div>
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                         <canvas id="wonderchefChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-8 deep-dive-container">
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Strengths</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Unique and powerful direct selling model.</li>
-                                    <li>High credibility from celebrity chef endorsement.</li>
-                                    <li>Strong focus on innovation and premium products.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Smaller scale compared to market cap leaders.</li>
-                                    <li>Reliance on a single celebrity for brand image.</li>
-                                    <li>No investment in paid search.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
-                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
-                                    <li>Build a more diverse influencer marketing strategy.</li>
-                                    <li>Compete on value for premium features.</li>
-                                    <li>Use PPC to target customers searching for their products.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
-                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
-                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=Exhibition+Gate" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/fce7f3/db2777?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
-                        </div>
-                         <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
-                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/534775020_1121698810051924_6101461148272083241_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=jp2idZ6DePAQ7kNvwESzhh4&_nc_oc=AdmkX0c2FPCwx8ehsiBMR_hUR1J9hUOyfLzCT0sRlc1sQYm5QI1UZw6ArLpWcS0FC4TNz8Lx1CDwRpufKxpFsUoS&nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=VYF_8blAuAf361bcQQrcYQ&oh=00_AfVhsc3wq9gGZvNVsK-vAY-2sghDg5Q8PNgyjb3ItebeIQ&oe=68AE21D3" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu20-1.fna.fbcdn.net/v/t39.30808-6/532259693_1120989346789537_5574425289449323129_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=833d8c&_nc_ohc=BpgtXthAco0Q7kNvwElilzG&_nc_oc=AdkEgUpo0UCMvwU6G88qDnWyZ-Db8w9_QRMlrgqw5KQuaOAjZ_UahZrTR1Aile43zku2g6rt9kE1yCpDzAa7SxcT&nc_zt=23&_nc_ht=scontent.fccu20-1.fna&_nc_gid=nkHVEcZxfxMWKIZbU4W1DA&oh=00_AfXjWvi2Hk8KucB_h8qgSLNdTU6YQXL6Rm_vDSZjQXnU-g&oe=68AE1218" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Instagram Grid (525K+ Followers)</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://placehold.co/150x150/fce7f3/db2777?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/fce7f3/db2777?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/fce7f3/db2777?text=Post" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Section 4: Advanced Analytics -->
+        <div class="grid grid-cols-1 xl:grid-cols-5 gap-8">
+            <div class="xl:col-span-3 section-card">
+                 <h2 class="text-xl font-bold text-white">Conversion Funnel Analysis</h2>
+                 <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To identify bottlenecks in the customer journey. A significant drop-off between stages (e.g., 'Add to Cart' to 'Purchase') indicates friction that needs to be addressed.</p>
+                 <div class="chart-container"><canvas id="funnelChart"></canvas></div>
+            </div>
+            <div class="xl:col-span-2 section-card">
+                <h2 class="text-xl font-bold text-white">Ad Fatigue Analysis (Frequency vs. CPA)</h2>
+                <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To prevent over-exposing ads to the same audience, which leads to higher costs. This chart helps determine the optimal ad frequency before performance degrades.</p>
+                <div class="chart-container"><canvas id="fatigueChart"></canvas></div>
             </div>
         </div>
 
-        <div id="AGARO" class="tab-content">
-            <div class="slide">
-                <h2 class="slide-title border-purple-500">Competitor Deep Dive: AGARO</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Key Metrics</h3>
-                        <ul class="text-sm space-y-2">
-                            <li><span class="font-semibold">Authority Score:</span> 35</li>
-                            <li><span class="font-semibold">Organic Traffic:</span> 259K / month</li>
-                            <li><span class="font-semibold">Bounce Rate:</span> 78.18%</li>
-                            <li><span class="font-semibold">Annual Orders:</span> 500,000+</li>
-                        </ul>
-                    </div>
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                        <canvas id="agaroChart"></canvas>
-                    </div>
+        <!-- Section 5: Prediction & Forecasting Engine -->
+        <div class="section-card">
+            <h2 class="text-xl font-bold text-white">Prediction & Forecasting Engine</h2>
+            <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To move from reactive to proactive management. This engine allows you to simulate the potential impact of budget and efficiency changes, helping to set realistic future targets and optimize spending.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6 items-end">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300">Spend Increase (%)</label>
+                    <div class="flex items-center space-x-3 mt-2"><input id="spend-increase-slider" type="range" min="0" max="100" value="10" class="w-full h-2 bg-gray-700 rounded-lg"><span id="spend-increase-label" class="text-sm font-semibold text-green-300 bg-gray-700 px-3 py-1 rounded-md">10%</span></div>
                 </div>
-                <div class="mt-8 deep-dive-container">
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Strengths</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Strong SEO presence and traffic growth.</li>
-                                    <li>Value-for-money positioning with premium features.</li>
-                                    <li>Effective digital-first marketing strategy.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Very high bounce rate, indicating poor UX.</li>
-                                    <li>Lower brand recognition than legacy players.</li>
-                                    <li>No investment in paid search.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
-                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
-                                    <li>Create a superior website experience to capture their lost traffic.</li>
-                                    <li>Build a stronger brand narrative around trust and quality.</li>
-                                    <li>Use PPC to directly compete for their top keywords.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
-                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
-                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=Exhibition+Gate" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/f3e8ff/7e22ce?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
-                        </div>
-                         <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
-                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img src="https://scontent.fccu2-4.fna.fbcdn.net/v/t39.30808-6/485765194_1074526834711246_6247238746474029074_n.jpg?_nc_cat=111&ccb=1-7&_nc_sid=127cfc&_nc_ohc=_6ueFYSETr4Q7kNvwFvmzyK&_nc_oc=AdkePbu4__5koSc3kUXjc5kuTkLtGG2Al4wu1xLFugl7xgikf8UQsfZ0mMhXVTN0HO0&nc_zt=23&_nc_ht=scontent.fccu2-4.fna&_nc_gid=FxSkEXB-g9zCFzGmG9LKcQ&oh=00_AfWs9dJh1Job21mYGs78RSbVgT-9AuQT2o8oTnZhrBPEuA&oe=68AE3EAF" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.75761-15/467947959_18093539089494715_6791818418474648417_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=lclYBfqLsf4Q7kNvwFx3lBy&_nc_oc=AdmN1FnkB1SsCNlJJZi7AJ6x4pKmGwosmicVBSy8uxbDMtfRHbFjNu562pnVTB_GS24&nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=A6u-I2_ypu7EXro65Vi7_Q&oh=00_AfWlZ1YP8rrFE2PIT76WqOucw0XJXysmF_zzkFxCxTAlvQ&oe=68AE2151" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Instagram Grid</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://placehold.co/150x150/f3e8ff/7e22ce?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/f3e8ff/7e22ce?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/f3e8ff/7e22ce?text=Post" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                    </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300">CPA Change (%)</label>
+                    <div class="flex items-center space-x-3 mt-2"><input id="cpa-change-slider" type="range" min="-50" max="50" value="0" class="w-full h-2 bg-gray-700 rounded-lg"><span id="cpa-change-label" class="text-sm font-semibold text-yellow-300 bg-gray-700 px-3 py-1 rounded-md">0%</span></div>
                 </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300">CVR Change (%)</label>
+                    <div class="flex items-center space-x-3 mt-2"><input id="cvr-change-slider" type="range" min="-50" max="50" value="5" class="w-full h-2 bg-gray-700 rounded-lg"><span id="cvr-change-label" class="text-sm font-semibold text-sky-300 bg-gray-700 px-3 py-1 rounded-md">5%</span></div>
+                </div>
+                <div id="predicted-purchases" class="kpi-card p-4 rounded-lg text-center bg-blue-900/50 border-blue-700"></div>
+                <div id="predicted-roas" class="kpi-card p-4 rounded-lg text-center bg-blue-900/50 border-blue-700"></div>
             </div>
         </div>
 
-        <div id="Borosil" class="tab-content">
-            <div class="slide">
-                <h2 class="slide-title border-blue-500">Competitor Deep Dive: Borosil</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Key Metrics</h3>
-                        <ul class="text-sm space-y-2">
-                           <li><span class="font-semibold">Authority Score:</span> 34</li>
-                            <li><span class="font-semibold">Organic Traffic:</span> 13.1K / month</li>
-                            <li><span class="font-semibold">Bounce Rate:</span> 93.88%</li>
-                            <li><span class="font-semibold">Market Cap:</span> ₹3,970 Cr</li>
-                        </ul>
-                    </div>
-                    <div class="metric-card">
-                        <h3 class="metric-title mb-3">Engagement Metrics</h3>
-                        <canvas id="borosilChart"></canvas>
-                    </div>
-                </div>
-                <div class="mt-8 deep-dive-container">
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Strengths</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Established brand name in glassware.</li>
-                                    <li>Decent domain authority.</li>
-                                    <li>Solid financial backing.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card col-span-1">
-                                <h3 class="metric-title mb-3">Top Weaknesses</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside">
-                                    <li>Extremely poor website user experience (94% bounce rate).</li>
-                                    <li>Very low organic traffic for its brand size.</li>
-                                    <li>No investment in paid search.</li>
-                                </ul>
-                            </div>
-                            <div class="metric-card bg-red-50 border-red-200 col-span-1">
-                                <h3 class="metric-title text-red-800 mb-3">Strategic Gaps for Assure</h3>
-                                <ul class="text-sm space-y-2 list-disc list-inside text-red-700">
-                                    <li>This is the easiest competitor to outperform on all digital fronts.</li>
-                                    <li>A better website alone could capture their dissatisfied users.</li>
-                                    <li>PPC can easily win traffic for their core product terms.</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Occasion Posts</h4>
-                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=Happy+Durga+Puja" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=Diwali+Offer" class="rounded w-full h-auto mt-4">
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Event Banners</h4>
-                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=Exhibition+Gate" class="rounded w-full h-auto">
-                            <img src="https://placehold.co/600x400/dbeafe/1d4ed8?text=In-Store+Demo" class="rounded w-full h-auto mt-4">
-                        </div>
-                         <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Reel Previews</h4>
-                            <iframe class="w-full h-64 rounded-lg" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Facebook Feed</h4>
-                            <div class="grid grid-cols-2 gap-2">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.82787-15/532335284_18395871865139358_5130397498415781782_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=VZ8gPLvBsAAQ7kNvwExi7o7&_nc_oc=AdmVXsUvXaZ935r2jNhRco2egvAS8xjOF8DE-yBsI3qe0Bqvb6bIeQLNHHY1lP28vks&nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=oyYUxsOfYdA31Pp4F0NdIA&oh=00_AfXHOdQQ9XLn-BkOBxXAkVcPWCgdRexSPYcrDRvFKm92RQ&oe=68AE2F0A" class="rounded w-full h-auto">
-                                <img src="https://scontent.fccu2-1.fna.fbcdn.net/v/t51.82787-15/531514383_18395839978139358_651578880817160872_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rsS5jXwF77MQ7kNvwH_43_7&_nc_oc=Adm_XwX0gu5rQNG30KSyLS4c0veJX8sxP3IE18s-kBxMyADwBHue0wmL2DcyalLJ5Z8&nc_zt=23&_nc_ht=scontent.fccu2-1.fna&_nc_gid=h0n0cSoceQdkmN0Nd8QI9Q&oh=00_AfWhwcbQQtzDo-KS2GM2mhkwwuxoLjM4xoB8XAP6A6Zneg&oe=68AE1F4B" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                        <div class="scrollable-section">
-                            <h4 class="font-bold text-lg mb-2">Instagram Grid (786K Followers)</h4>
-                            <div class="grid grid-cols-3 gap-2">
-                                <img src="https://placehold.co/150x150/dbeafe/1d4ed8?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/dbeafe/1d4ed8?text=Post" class="rounded w-full h-auto">
-                                <img src="https://placehold.co/150x150/dbeafe/1d4ed8?text=Post" class="rounded w-full h-auto">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Section 6: Detailed Campaign Breakdown -->
+        <div class="section-card">
+            <h2 class="text-xl font-bold text-white">Detailed Campaign Breakdown</h2>
+            <p class="text-gray-400 text-sm mt-1 mb-4"><strong>Business Need:</strong> To perform granular analysis at the campaign level. This table helps identify top and bottom-performing campaigns, allowing for tactical optimization and budget reallocation.</p>
+            <div class="table-container"><table class="min-w-full divide-y divide-gray-700"><thead class="bg-gray-800 sticky top-0"><tr><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Campaign Name</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Amount Spent</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">ROAS</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">Purchases</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">CPA</th><th class="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider">CTR (%)</th></tr></thead><tbody id="campaign-table-body" class="bg-gray-800 divide-y divide-gray-700"></tbody></table></div>
         </div>
     </div>
 
-    <script>
-        // Store chart instances to prevent re-initialization
-        let charts = {};
-
-        function openTab(evt, tabName) {
-            var i, tabcontent, tablinks;
-            tabcontent = document.getElementsByClassName("tab-content");
-            for (i = 0; i < tabcontent.length; i++) {
-                tabcontent[i].style.display = "none";
-            }
-            tablinks = document.getElementsByClassName("tab-button");
-            for (i = 0; i < tablinks.length; i++) {
-                tablinks[i].className = tablinks[i].className.replace(" active", "");
-            }
-            document.getElementById(tabName).style.display = "block";
-            evt.currentTarget.className += " active";
-
-            // Initialize charts on tab open
-            if(tabName === 'TTK' && !charts.ttkChart) {
-                charts.ttkChart = new Chart(document.getElementById('ttkChart').getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Bounce Rate', 'Pages per Visit'],
-                        datasets: [{
-                            label: 'TTK Prestige',
-                            data: [43.63, 4.07],
-                            backgroundColor: ['#10b981', '#10b981'],
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
-                });
-            } else if (tabName === 'AGARO' && !charts.agaroChart) {
-                charts.agaroChart = new Chart(document.getElementById('agaroChart').getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Bounce Rate', 'Pages per Visit'],
-                        datasets: [{
-                            label: 'AGARO',
-                            data: [78.18, 1.90],
-                            backgroundColor: ['#8b5cf6', '#8b5cf6'],
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
-                });
-            } else if (tabName === 'Borosil' && !charts.borosilChart) {
-                charts.borosilChart = new Chart(document.getElementById('borosilChart').getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Bounce Rate', 'Pages per Visit'],
-                        datasets: [{
-                            label: 'Borosil',
-                            data: [93.88, 1.19],
-                            backgroundColor: ['#3b82f6', '#3b82f6'],
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
-                });
-            } else if (tabName === 'Cello' && !charts.celloChart) {
-                charts.celloChart = new Chart(document.getElementById('celloChart').getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Authority Score', 'Organic Traffic (in K)'],
-                        datasets: [{
-                            label: 'Cello World',
-                            data: [41, 137],
-                            backgroundColor: ['#f97316', '#f97316'],
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
-                });
-            } else if (tabName === 'Wonderchef' && !charts.wonderchefChart) {
-                charts.wonderchefChart = new Chart(document.getElementById('wonderchefChart').getContext('2d'), {
-                    type: 'bar',
-                    data: {
-                        labels: ['Authority Score', 'Organic Traffic (in K)'],
-                        datasets: [{
-                            label: 'Wonderchef',
-                            data: [48, 3.3],
-                            backgroundColor: ['#ec4899', '#ec4899'],
-                        }]
-                    },
-                    options: { indexAxis: 'y', plugins: { legend: { display: false } } }
-                });
-            }
-        }
-
-        window.onload = function() {
-            new Chart(document.getElementById('socialFollowersChart').getContext('2d'), {
-                type: 'bar',
-                data: {
-                    labels: ['Borosil', 'Prestige', 'Agaro', 'Cello', 'Wonderchef', 'Havells'],
-                    datasets: [
-                        {
-                            label: 'Instagram Followers',
-                            data: [230000, 76800, 28200, 63300, 616000, 203000],
-                            backgroundColor: '#c026d3',
-                        },
-                        {
-                            label: 'Facebook Followers',
-                            data: [786000, 755000, 10000, 87000, 1100000, 580000],
-                            backgroundColor: '#2563eb',
-                        }
-                    ]
-                },
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            ticks: {
-                                callback: function(value) {
-                                    if (value >= 1000000) return (value / 1000000) + 'M';
-                                    if (value >= 1000) return (value / 1000) + 'K';
-                                    return value;
-                                }
-                            }
-                        }
-                    }
-                }
+<script>
+    // --- MOCK DATA GENERATION ---
+    const mockData = [];
+    const today = new Date('2025-10-17');
+    const startDate = new Date(today);
+    startDate.setDate(today.getDate() - 90);
+    const campaignTemplates = [
+        { name: 'Q4 Evergreen - Sales', objective: 'Sales' }, { name: 'Diwali Special Offer', objective: 'Sales' },
+        { name: 'Lead Gen - Ebook Download', objective: 'Leads' }, { name: 'Brand Awareness - Fall Collection', objective: 'Awareness' },
+    ];
+    for (let d = new Date(startDate); d <= today; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toISOString().split('T')[0];
+        for (let i = 0; i < campaignTemplates.length; i++) {
+            const template = campaignTemplates[i];
+            const amountSpent = 50 + Math.random() * 150 * (Math.sin(d.getTime() / (1000 * 60 * 60 * 24 * 7)) + 1.5);
+            const impressions = Math.floor(amountSpent * (200 + Math.random() * 100));
+            const clicks = Math.floor(impressions * (0.01 + Math.random() * 0.02));
+            const frequency = 1.2 + Math.random() * (4 + Math.sin(d.getDate()) * 3); // Frequency now varies more for fatigue chart
+            const purchases = template.objective === 'Sales' ? Math.floor(clicks * (0.04 - (frequency * 0.005))) : 0; // CPA worsens with frequency
+            const leads = template.objective === 'Leads' ? Math.floor(clicks * (0.1 + Math.random() * 0.05)) : 0;
+            const purchaseRevenue = purchases * (80 + Math.random() * 40);
+            mockData.push({
+                "Date": dateStr, "Campaign ID": 1000 + i, "Campaign Name": template.name, "Ad Set ID": 2000+i, "Ad Set Name": `Audience ${i+1}`, "Ad ID": 3000+i, "Ad Name": `Video Ad ${i+1}`, "Campaign Objective": template.objective, "Status": "Active", "Amount Spent": amountSpent, "Impressions": impressions, "Reach": Math.floor(impressions / frequency), "Frequency": frequency, "CPM": (amountSpent / impressions) * 1000, "Link Clicks": clicks, "Outbound Clicks": Math.floor(clicks * 0.9), "CTR (Link Click-Through)": (clicks / impressions) * 100, "CPC (Cost Per Click)": clicks > 0 ? amountSpent / clicks : 0, "Adds to Cart": Math.floor(clicks * 0.3), "Initiates Checkout": Math.floor(clicks * 0.15), "Purchases": purchases, "Leads": leads, "Conversion Rate (%)": purchases > 0 && clicks > 0 ? (purchases / clicks) * 100 : 0, "CPA (Cost Per Purchase)": purchases > 0 ? amountSpent / purchases : 0, "Purchase Revenue": purchaseRevenue, "ROAS (Return On Ad Spend)": amountSpent > 0 ? purchaseRevenue / amountSpent : 0,
             });
-            // Trigger the click on the first tab to initialize its chart
-            openTab({currentTarget: document.querySelector('.tab-button.active')}, 'Summary');
         }
-    </script>
+    }
+    
+    // --- UTILITY FUNCTIONS & CHART DEFAULTS ---
+    const formatCurrency = (v) => isNaN(v) ? '$0.00' : v.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    const formatNumber = (v) => isNaN(v) ? '0' : v.toLocaleString('en-US', { maximumFractionDigits: 0 });
+    const formatROAS = (v) => isNaN(v) ? '0.00x' : `${v.toFixed(2)}x`;
+    Chart.defaults.color = '#9CA3AF';
+    Chart.defaults.borderColor = '#374151';
 
+    // --- GLOBAL CHART VARIABLES ---
+    let revenueTrendChart, efficiencyTrendChart, funnelChart, fatigueChart;
+
+    // --- DOM ELEMENT REFERENCES ---
+    const dateSlider = document.getElementById('date-slider');
+    const sliderDateLabel = document.getElementById('slider-date-label');
+    const objectiveFilter = document.getElementById('objective-filter');
+    const spendIncreaseSlider = document.getElementById('spend-increase-slider');
+    const spendIncreaseLabel = document.getElementById('spend-increase-label');
+    const cpaChangeSlider = document.getElementById('cpa-change-slider');
+    const cpaChangeLabel = document.getElementById('cpa-change-label');
+    const cvrChangeSlider = document.getElementById('cvr-change-slider');
+    const cvrChangeLabel = document.getElementById('cvr-change-label');
+    
+    // --- CORE LOGIC ---
+    function getFilteredData() {
+        const uniqueDates = [...new Set(mockData.map(d => d.Date))].sort();
+        const selectedDate = uniqueDates[dateSlider.value];
+        const selectedObjective = objectiveFilter.value;
+        return mockData.filter(d => (d.Date <= selectedDate) && (selectedObjective === 'All' || d['Campaign Objective'] === selectedObjective));
+    }
+    
+    function updateDashboard() {
+        const data = getFilteredData();
+        updateKpiCards(data);
+        updateRevenueTrendChart(data);
+        updateEfficiencyTrendChart(data);
+        updateFunnelChart(data);
+        updateFatigueChart(data);
+        updateDetailedTable(data);
+        updatePredictionEngine(data);
+    }
+    
+    // --- UPDATE FUNCTIONS ---
+    function updateKpiCards(data) {
+        const totals = data.reduce((acc, curr) => {
+            acc.spent += curr['Amount Spent']; acc.revenue += curr['Purchase Revenue']; acc.purchases += curr['Purchases']; return acc;
+        }, { spent: 0, revenue: 0, purchases: 0 });
+        const roas = totals.spent > 0 ? totals.revenue / totals.spent : 0;
+        const cpa = totals.purchases > 0 ? totals.spent / totals.purchases : 0;
+        const createKpiHtml = (title, value) => `<p class="text-base font-medium text-gray-400 truncate">${title}</p><p class="mt-1 text-4xl font-extrabold text-white">${value}</p>`;
+        document.getElementById('kpi-spent').innerHTML = createKpiHtml('Total Spend', formatCurrency(totals.spent));
+        document.getElementById('kpi-roas').innerHTML = createKpiHtml('Overall ROAS', formatROAS(roas));
+        document.getElementById('kpi-cpa').innerHTML = createKpiHtml('Average CPA', formatCurrency(cpa));
+        document.getElementById('kpi-purchases').innerHTML = createKpiHtml('Total Purchases', formatNumber(totals.purchases));
+    }
+
+    function updateRevenueTrendChart(data) {
+        const byDate = data.reduce((acc, curr) => {
+            if (!acc[curr.Date]) acc[curr.Date] = { spent: 0, revenue: 0 };
+            acc[curr.Date].spent += curr['Amount Spent']; acc[curr.Date].revenue += curr['Purchase Revenue']; return acc;
+        }, {});
+        const labels = Object.keys(byDate).sort();
+        const revenueData = labels.map(date => byDate[date].revenue);
+        const spentData = labels.map(date => byDate[date].spent);
+        const chartData = {
+            labels: labels, datasets: [
+                { type: 'bar', label: 'Spend', data: spentData, backgroundColor: 'rgba(59, 130, 246, 0.5)', borderColor: 'rgba(59, 130, 246, 0.8)' },
+                { type: 'line', label: 'Revenue', data: revenueData, borderColor: '#10B981', backgroundColor: '#10B98120', tension: 0.4, fill: true, yAxisID: 'y1' }
+            ]
+        };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { x: { type: 'time', time: { unit: 'week' } }, y: { stacked: true, title: { display: true, text: 'Spend ($)'} }, y1: { position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Revenue ($)'} } }, plugins: { legend: { position: 'top' } } };
+        if (revenueTrendChart) { revenueTrendChart.data = chartData; revenueTrendChart.update(); } 
+        else { revenueTrendChart = new Chart(document.getElementById('revenueTrendChart'), { data: chartData, options: chartOptions }); }
+    }
+
+    function updateEfficiencyTrendChart(data) {
+        const byDate = data.reduce((acc, curr) => {
+            if (!acc[curr.Date]) acc[curr.Date] = { spent: 0, revenue: 0, purchases: 0 };
+            acc[curr.Date].spent += curr['Amount Spent']; acc[curr.Date].revenue += curr['Purchase Revenue']; acc[curr.Date].purchases += curr['Purchases']; return acc;
+        }, {});
+        const labels = Object.keys(byDate).sort();
+        const roasData = labels.map(d => byDate[d].spent > 0 ? byDate[d].revenue / byDate[d].spent : 0);
+        const cpaData = labels.map(d => byDate[d].purchases > 0 ? byDate[d].spent / byDate[d].purchases : 0);
+        const chartData = {
+            labels, datasets: [
+                { label: 'ROAS', data: roasData, borderColor: '#2563EB', tension: 0.4, yAxisID: 'y' },
+                { label: 'CPA ($)', data: cpaData, borderColor: '#FBBF24', tension: 0.4, yAxisID: 'y1' }
+            ]
+        };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, scales: { x: { type: 'time', time: { unit: 'week' } }, y: { position: 'left', title: { display: true, text: 'ROAS' } }, y1: { position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'CPA ($)' } } }, plugins: { legend: { position: 'top' } } };
+        if (efficiencyTrendChart) { efficiencyTrendChart.data = chartData; efficiencyTrendChart.update(); } 
+        else { efficiencyTrendChart = new Chart(document.getElementById('efficiencyTrendChart'), { type: 'line', data: chartData, options: chartOptions }); }
+    }
+
+    function updateFunnelChart(data) {
+        const totals = data.reduce((acc, curr) => {
+            acc.impressions += curr.Impressions; acc.clicks += curr['Link Clicks']; acc.atc += curr['Adds to Cart']; acc.checkout += curr['Initiates Checkout']; acc.purchases += curr.Purchases; return acc;
+        }, { impressions: 0, clicks: 0, atc: 0, checkout: 0, purchases: 0 });
+        const chartData = {
+            labels: ['Impressions', 'Link Clicks', 'Adds to Cart', 'Checkouts', 'Purchases'],
+            datasets: [{
+                label: 'Conversion Funnel', data: [totals.impressions, totals.clicks, totals.atc, totals.checkout, totals.purchases],
+                backgroundColor: ['#1E3A8A', '#1E40AF', '#1D4ED8', '#2563EB', '#3B82F6']
+            }]
+        };
+        const chartOptions = { indexAxis: 'y', responsive: true, maintainAspectRatio: false, scales: { x: { type: 'logarithmic' } }, plugins: { legend: { display: false }, title: { display: true, text: 'Customer Journey (Logarithmic Scale)' } } };
+        if (funnelChart) { funnelChart.data = chartData; funnelChart.update(); } 
+        else { funnelChart = new Chart(document.getElementById('funnelChart'), { type: 'bar', data: chartData, options: chartOptions }); }
+    }
+
+    function updateFatigueChart(data) {
+        const salesData = data.filter(d => d['Campaign Objective'] === 'Sales' && d.Purchases > 0);
+        const scatterData = salesData.map(d => ({ x: d.Frequency, y: d['CPA (Cost Per Purchase)'] }));
+        const chartData = { datasets: [{ label: 'CPA by Frequency', data: scatterData, backgroundColor: 'rgba(236, 72, 153, 0.6)' }] };
+        const chartOptions = { responsive: true, maintainAspectRatio: false, scales: { x: { type: 'linear', position: 'bottom', title: { display: true, text: 'Ad Frequency' } }, y: { title: { display: true, text: 'CPA ($)' } } }, plugins: { legend: { display: false } } };
+        if (fatigueChart) { fatigueChart.data = chartData; fatigueChart.update(); } 
+        else { fatigueChart = new Chart(document.getElementById('fatigueChart'), { type: 'scatter', data: chartData, options: chartOptions }); }
+    }
+
+    function updateDetailedTable(data) {
+        const selectedDate = [...new Set(mockData.map(d => d.Date))].sort()[dateSlider.value];
+        const latestData = data.filter(d => d.Date === selectedDate);
+        const summary = latestData.reduce((acc, curr) => {
+            const name = curr['Campaign Name'];
+            if (!acc[name]) acc[name] = { spent: 0, revenue: 0, purchases: 0, clicks: 0, impressions: 0 };
+            acc[name].spent += curr['Amount Spent']; acc[name].revenue += curr['Purchase Revenue']; acc[name].purchases += curr['Purchases']; acc[name].clicks += curr['Link Clicks']; acc[name].impressions += curr['Impressions']; return acc;
+        }, {});
+        const tableBody = document.getElementById('campaign-table-body');
+        tableBody.innerHTML = Object.entries(summary).map(([name, totals]) => {
+            const roas = totals.spent > 0 ? totals.revenue / totals.spent : 0;
+            const cpa = totals.purchases > 0 ? totals.spent / totals.purchases : 0;
+            const ctr = totals.impressions > 0 ? (totals.clicks / totals.impressions) * 100 : 0;
+            return `<tr class="hover:bg-gray-700/50"><td class="px-6 py-4 text-sm font-medium text-white">${name}</td><td class="px-6 py-4 text-sm text-gray-300">${formatCurrency(totals.spent)}</td><td class="px-6 py-4 text-sm text-gray-300">${formatROAS(roas)}</td><td class="px-6 py-4 text-sm text-gray-300">${formatNumber(totals.purchases)}</td><td class="px-6 py-4 text-sm text-gray-300">${formatCurrency(cpa)}</td><td class="px-6 py-4 text-sm text-gray-300">${ctr.toFixed(2)}%</td></tr>`;
+        }).join('');
+    }
+
+    function updatePredictionEngine(data) {
+        if (data.length === 0) return;
+        const salesData = data.filter(d => d['Campaign Objective'] === 'Sales');
+        const totals = salesData.reduce((acc, curr) => {
+            acc.spent += curr['Amount Spent']; acc.purchases += curr['Purchases']; acc.revenue += curr['Purchase Revenue']; acc.clicks += curr['Link Clicks']; return acc;
+        }, { spent: 0, purchases: 0, revenue: 0, clicks: 0 });
+        const histCpa = totals.purchases > 0 ? totals.spent / totals.purchases : 0;
+        const histCvr = totals.clicks > 0 ? totals.purchases / totals.clicks : 0;
+        const aov = totals.purchases > 0 ? totals.revenue / totals.purchases : 50;
+        const spendIncr = parseFloat(spendIncreaseSlider.value) / 100, cpaChg = parseFloat(cpaChangeSlider.value) / 100, cvrChg = parseFloat(cvrChangeSlider.value) / 100;
+        const futureSpend = totals.spent * (1 + spendIncr);
+        const futureCvr = histCvr * (1 + cvrChg);
+        const futureCpa = histCpa * (1 + cpaChg);
+        const predictedPurchases = futureCpa > 0 ? futureSpend / futureCpa : 0; // Simple model, could be improved
+        const predictedRevenue = predictedPurchases * aov;
+        const predictedRoas = futureSpend > 0 ? predictedRevenue / futureSpend : 0;
+        const createKpiHtml = (title, value) => `<p class="text-sm font-medium text-gray-300">${title}</p><p class="mt-1 text-2xl font-bold text-white">${value}</p>`;
+        document.getElementById('predicted-purchases').innerHTML = createKpiHtml('Predicted Purchases', formatNumber(predictedPurchases));
+        document.getElementById('predicted-roas').innerHTML = createKpiHtml('Predicted ROAS', formatROAS(predictedRoas));
+    }
+
+    // --- INITIALIZATION ---
+    function init() {
+        const objectives = [...new Set(mockData.map(d => d['Campaign Objective']))];
+        objectives.forEach(obj => { objectiveFilter.innerHTML += `<option value="${obj}">${obj}</option>`; });
+        const uniqueDates = [...new Set(mockData.map(d => d.Date))].sort();
+        dateSlider.max = uniqueDates.length - 1; dateSlider.value = uniqueDates.length - 1;
+        const updateDateLabel = () => { sliderDateLabel.textContent = new Date(uniqueDates[dateSlider.value]).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }); };
+        dateSlider.addEventListener('input', () => { updateDateLabel(); updateDashboard(); });
+        objectiveFilter.addEventListener('change', updateDashboard);
+        [spendIncreaseSlider, cpaChangeSlider, cvrChangeSlider].forEach(slider => slider.addEventListener('input', () => updatePredictionEngine(getFilteredData())));
+        spendIncreaseSlider.addEventListener('input', (e) => spendIncreaseLabel.textContent = `${e.target.value}%`);
+        cpaChangeSlider.addEventListener('input', (e) => cpaChangeLabel.textContent = `${e.target.value}%`);
+        cvrChangeSlider.addEventListener('input', (e) => cvrChangeLabel.textContent = `${e.target.value}%`);
+        updateDateLabel();
+        updateDashboard();
+    }
+    document.addEventListener('DOMContentLoaded', init);
+</script>
 </body>
 </html>
+
